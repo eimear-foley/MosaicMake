@@ -3,22 +3,23 @@ from Numberjack import *
 def get_model():
       N = len(param['inputtable'])
       inputtable = param['inputtable']
-      capacity = 1
-      output = VarArray(N, N)
-      matrix = Matrix(N, N)
-      cost = Sum([Sum(matrix[i], inputtable[i]) for i in range(N)])
+      #output = VarArray(N, N)
+      matrix = Matrix(N, N) #NxN Matrix of booleans
+      
+      #The overall cost of the chosen cells in 'matrix' times their corresponding cost in the 'inputtable'
+      cost = Sum([Sum(matrix[i], inputtable[i]) for i in range(N)]) 
 
       model = Model(
-            Minimize(cost),
-            [Sum(row) == 1 for row in matrix.row],
-            [Sum(col) <= capacity for col in matrix.col]
+            Minimize(cost), #finding minimum cost
+            [Sum(row) == 1 for row in matrix.row], #only one chosen value per row
+            [Sum(col) <= 1 for col in matrix.col] #only one chosen value per column
             )
 
-      return capacity, output, matrix, cost, model
+      return matrix, cost, model
 
 def solve(param):
 
-      capacity, output, matrix, cost, model = get_model()
+      matrix, cost, model = get_model()
 
       solver = model.load(param['solver'])
       solver.setVerbosity(param['verbose'])
