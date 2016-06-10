@@ -1,7 +1,7 @@
 from Numberjack import *
 
 def get_model():
-      N = param['N']
+      N = len(param['inputtable'])
       inputtable = param['inputtable']
       capacity = 1
       output = VarArray(N, N)
@@ -34,6 +34,6 @@ def solve(param):
 
 if __name__ == '__main__':
 
-      default = {'solver': 'Mistral', 'verbose': 0, 'tcutoff': 30, 'inputtable': [[2,6,4],[0,9,3],[5,5,5]], 'N': 3}
+      default = {'solver': 'Mistral', 'verbose': 0, 'tcutoff': 30, 'inputtable': [[2,6,4],[0,9,3],[5,5,5]]}
       param = input(default)
       solve(param)
