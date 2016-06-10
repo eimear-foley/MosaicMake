@@ -2,7 +2,7 @@
 
 Aim: To assign images to grid sections of larger image, sorted by closest average colour.
 
-Steps:
+<b>Steps:</b>
 
 1) Make table of colour differences
 
@@ -11,13 +11,13 @@ Steps:
 3) Flatten result table
 
 
-Done so far:
+<b>Done so far:</b>
 
 (i) Made Numberjack model to assign best matches and return table.
     Table displays [1] where matching is made and [0] everywhere else.
 
 
-Things to do:
+<b>Things to do:</b>
 
 (i) Flatten table to list of cells chosen for matching.
 
