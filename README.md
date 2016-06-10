@@ -17,6 +17,9 @@ Done so far:
 
 Things to do:
 (i) Flatten table to list of cells chosen for matching.
+
 (ii) Read input from file
+
 (iii) Optimise
+
 (iv) Figure out this colour difference craic
