@@ -1,6 +1,6 @@
 # Insight project
 
-Aim: To assign images to grid sections of larger image, sorted by closest average colour.
+<b><u>Aim:</b></u> To assign images to grid sections of larger image, sorted by closest average colour.
 
 <b>Steps:</b>
 
