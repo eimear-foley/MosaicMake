@@ -27,6 +27,7 @@ def solve(param):
 
       if solver.is_sat():
             print(str(matrix))
+            print("Time:", solver.getTime())
       elif solver.is_unsat():
             print('Unsatisfiable')
       else:
