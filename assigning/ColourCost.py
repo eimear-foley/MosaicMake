@@ -36,12 +36,3 @@ def DiffTable(filename):
 
 # print(DiffTable(lst1, lst2))
 
-
-def TupToFile(lst, filename):
-    # gets a list of tuples 'lst' and writes them into the file 'filename'
-    # in the format we use up in DiffTable
-    oh = open(filename, "w")
-    oh.write("[\n")
-    for tup in lst:
-        oh.write("%i %i %i \n" %(tup[0], tup[1], tup[2]))
-    oh.write("]\n")    
