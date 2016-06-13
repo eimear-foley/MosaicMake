@@ -1,4 +1,5 @@
 from Numberjack import *
+from ColourCost import *
 
 def flatten(matrix):
 
@@ -47,6 +48,6 @@ def solve(param):
 
 if __name__ == '__main__':
 
-      default = {'solver': 'Mistral', 'verbose': 0, 'tcutoff': 30, 'inputtable': [[2,6,4],[0,9,3],[5,5,5]]}
+      default = {'solver': 'Mistral', 'verbose': 0, 'tcutoff': 30, 'inputtable': DiffTable('RGBValues.txt')}
       param = input(default)
       solve(param)
