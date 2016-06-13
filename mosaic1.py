@@ -1,5 +1,15 @@
 from Numberjack import *
 
+def flatten(matrix):
+
+      matches = []
+      for row in range(len(matrix)):
+            for item in range(len(matrix[row])):
+                  if matrix[row][item].get_value() == 1:
+                        matches += [(row, item)]
+      return matches
+                        
+
 def get_model():
       N = len(param['inputtable'])
       inputtable = param['inputtable']
@@ -28,6 +38,7 @@ def solve(param):
 
       if solver.is_sat():
             print(str(matrix))
+            print(flatten(matrix))
             print("Time:", solver.getTime())
       elif solver.is_unsat():
             print('Unsatisfiable')
