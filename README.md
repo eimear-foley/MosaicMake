@@ -20,9 +20,17 @@
 
 - [x] Read input from file
 
+- [x] Colour difference
+
 
 **Things to do:**
 
 - [ ] Optimise
 
-- [ ] Figure out this colour difference craic
+- [ ] Look at Min Cost Flow
+
+- [ ] Tighten up colour code
+
+- [ ] Threshold thingy
+
+- [ ] Web (?)
