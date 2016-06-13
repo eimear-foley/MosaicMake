@@ -18,10 +18,10 @@
 
 - [x] Flatten table to list of cells chosen for matching.
 
+- [x] Read input from file
+
 
 **Things to do:**
-
-- [ ] Read input from file
 
 - [ ] Optimise
 
