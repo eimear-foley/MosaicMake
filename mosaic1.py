@@ -51,6 +51,6 @@ def solve(param):
 
 if __name__ == '__main__':
 
-    default = {'solver': 'Mistral', 'verbose': 0, 'tcutoff': 30, 'inputtable': DiffTable('RGBValues.txt')}
+    default = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30, 'inputtable': DiffTable('RGBValues.txt')}
     param = input(default)
     solve(param)
