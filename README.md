@@ -16,10 +16,10 @@
 - [x] Made Numberjack model to assign best matches and return table.
     Table displays [1] where matching is made and [0] everywhere else.
 
+- [x] Flatten table to list of cells chosen for matching.
+
 
 **Things to do:**
-
-- [ ] Flatten table to list of cells chosen for matching.
 
 - [ ] Read input from file
 
