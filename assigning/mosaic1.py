@@ -51,6 +51,7 @@ def solve(param):
 
 if __name__ == '__main__':
 
-    default = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30, 'inputtable': DiffTable('RGBValues.txt')}
+	# 'function' is going to hold the lists of tuples Claire and Gaby are passing us
+    default = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30, 'inputtable': DiffTable("""function""")} 
     param = input(default)
     solve(param)
