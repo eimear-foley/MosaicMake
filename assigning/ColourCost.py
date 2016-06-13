@@ -11,28 +11,13 @@ def ColourDiff(tup1,tup2):
     
     return int(round(sqrt((2 + rMean // 256 ) * rChange + 4 * gChange + (2 + (255 - rMean) // 256) * bChange)))
 
-def DiffTable(filename):
+def DiffTable(lt1,lt2):
     
-    lstoflst = []
     table = []
-    fh = open(filename, 'r')
     
-    for line in fh:
-        if line == '[\n':
-            lst = []
-            lstart = True
-        elif line == ']\n':
-            lstoflst += [lst]
-        elif lstart:
-            tup = ([int(x) for x in line.split()])
-            lst += [tup]
-    
-    for colour1 in lstoflst[0]:
+    for colour1 in lt1:
         row = []
-        for colour2 in lstoflst[1]:
+        for colour2 in lt2:
             row += [ColourDiff(colour1, colour2)]
         table += [row]
-    return table    
-
-# print(DiffTable(lst1, lst2))
-
+    return table
