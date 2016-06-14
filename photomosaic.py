@@ -3,20 +3,22 @@ import image_slicer
 from os import listdir
 from os.path import isfile,join
 
+# directory in where the image we want to use is
+mypath = '/Users/Claire/mosaic/'
+  
 def SplitImage(img):                                                            
-  # directory in where the image we want to use is
-  mypath= '/Users/Claire/mosaic/'
+  
   tiles = image_slicer.slice(img, 4, save = False)
   image_slicer.save_tiles(tiles, directory=mypath, prefix='slices')
-  #stores a list of sorted tiles in variable 'onlyfiles' with file extension '.png'
+  # stores a list of sorted tiles in variable 'onlyfiles' with file extension '.png'
   files = [f for f in listdir(mypath) if isfile(join(mypath, f))  if f.endswith(".png")]
   files.sort()
   # a list of tuples containging rgb values are stored in variable 'rgbtiles'
   rgb = most_frequent_color(files)
-  #returns a list of rgb values of tiles in tuples
+  # returns a list of rgb values of tiles in tuples
   images_rgb = ResizeImg(files[0])
 
-  #list of rgb of tiles and list of rgb of mosaic images
+  # list of rgb of tiles and list of rgb of mosaic images
   return rgb, images_rgb
 
 
@@ -36,12 +38,10 @@ def most_frequent_color(lst):
   return rgb
 
 
-
 def ResizeImg(image):
   # Resizes all images in lst to the size of
   # the split tiles of the original image
   # and give back most frequent color of each image
-  mypath = '/Users/claire/mosaic/'
   lst = [f for f in listdir(mypath) if isfile(join(mypath, f))  if f.endswith(".png")]
   lst2 = []
   i = Image.open(image)
@@ -56,20 +56,18 @@ def ResizeImg(image):
   return lst2
 
 
-
 def grid(img, tile, lst):
     # Puts images into mosaic
-    mypath = '/Users/claire/mosaic/'
     tile = Image.open(tile)
     w,h = tile.size
     original = Image.open(img)
     total_w, total_h = original.size
-    x=0
-    y=0
+    x = 0
+    y = 0
     result = Image.new('RGB', (total_w,total_h)) # new image
     for t in nj:
         img = imageslst[t[1]]
-        img =Image.open(img)
+        img = Image.open(img)
         if x < total_w and y < total_h:
             result.paste(img,(x, y))
             x += w
