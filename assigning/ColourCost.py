@@ -12,7 +12,7 @@ def ColourDiff(tup1,tup2):
     return int(round(sqrt((2 + rMean // 256 ) * rChange + 4 * gChange + (2 + (255 - rMean) // 256) * bChange)))
 
 def DiffTable(tup):
-    (lst1, lst2) = tup
+    (lt1, lt2) = tup
     table = []
     
     for colour1 in lt1:
