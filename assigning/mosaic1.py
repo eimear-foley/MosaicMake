@@ -1,27 +1,29 @@
 from Numberjack import *
 from ColourCost import *
 
+
 def flatten(matrix):
-	
+
     matches = []
     for row in range(len(matrix)):
         for item in range(len(matrix[row])):
             if matrix[row][item].get_value() == 1:
                 matches += [(row, item)]
     return matches
-                        
 
-def get_model():
-	
+
+def get_model(param):
+
     N = len(param['inputtable'])
     inputtable = param['inputtable']
     # NxN Matrix of booleans
     matrix = Matrix(N, N)
-    # The overall cost of the chosen cells in 'matrix' times their corresponding cost in the 'inputtable'
-    cost = Sum([Sum(matrix[i], inputtable[i]) for i in range(N)]) 
+    # The overall cost of the chosen cells in 'matrix' times their
+    # corresponding cost in the 'inputtable'
+    cost = Sum([Sum(matrix[i], inputtable[i]) for i in range(N)])
 
     model = Model(
-    	# finding minimum cost
+        # finding minimum cost
         Minimize(cost),
         # only one chosen value per row
         [Sum(row) == 1 for row in matrix.row],
@@ -31,9 +33,13 @@ def get_model():
 
     return matrix, cost, model
 
-def solve(param):
 
-    matrix, cost, model = get_model()
+def solve(lst):
+
+    param = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30,
+             'inputtable': DiffTable(lst)}
+
+    matrix, cost, model = get_model(param)
 
     solver = model.load(param['solver'])
     solver.setVerbosity(param['verbose'])
@@ -49,9 +55,6 @@ def solve(param):
     else:
         print('Timed out')
 
-if __name__ == '__main__':
 
-	# 'function' is going to hold the lists of tuples Claire and Gaby are passing us
-    default = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30, 'inputtable': DiffTable("""function""")} 
-    param = input(default)
-    solve(param)
+def Final(lst):
+    return solve(lst)
