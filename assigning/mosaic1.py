@@ -48,7 +48,7 @@ def solve(lst):
 
     if solver.is_sat():
         print(str(matrix))
-        print(flatten(matrix))
+        return flatten(matrix)
         print("Time:", solver.getTime())
     elif solver.is_unsat():
         print('Unsatisfiable')
