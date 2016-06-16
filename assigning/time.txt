@@ -1,4 +1,4 @@
- Running time 
+ Running time for Numberjack model on NxN matrix
 
   N           Seconds
  ----        ---------
