@@ -15,12 +15,12 @@ def flatten(matrix):
 def get_model(param):
 
     N = len(param['inputtable'])
-    inputtable = param['inputtable']
+    costmatrix = param['inputtable']
     # NxN Matrix of booleans
     matrix = Matrix(N, N)
     # The overall cost of the chosen cells in 'matrix' times their
     # corresponding cost in the 'inputtable'
-    cost = Sum([Sum(matrix[i], inputtable[i]) for i in range(N)])
+    cost = Sum([Sum(matrix[i], costmatrix[i]) for i in range(N)])
 
     model = Model(
         # finding minimum cost
@@ -34,10 +34,10 @@ def get_model(param):
     return matrix, cost, model
 
 
-def solve(lst):
+def solve(tup):
 
     param = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30,
-             'inputtable': DiffTable(lst)}
+             'inputtable': DiffTable(tup)}
 
     matrix, cost, model = get_model(param)
 
@@ -56,5 +56,5 @@ def solve(lst):
         print('Timed out')
 
 
-def Final(lst):
-    return solve(lst)
+def Final(tup):
+    return solve(tup)
