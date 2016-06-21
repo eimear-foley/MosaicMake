@@ -55,7 +55,7 @@ def SplitImage(img, N):
     resized.save(mypath + "resized.jpeg")    
     
     #crop_tiles("resized.jpeg", N)
-    tiles = image_slicer.slice(img, N*N, save = False)
+    tiles = image_slicer.slice("resized.jpeg", N*N, save = False)
     image_slicer.save_tiles(tiles, directory=mypath+'tiles/', prefix='slices')
     
     tile_img = [f for f in listdir(mypath+"tiles/") if isfile(mypath+"tiles/"+f) if f.startswith('slices')]
