@@ -40,9 +40,7 @@ def SplitImage(img, N):
         diff = imgwidth - imgheight
         h = imgheight - N * int( imgheight//N )
         print( "h = ", h)
-        #resized = img.crop(((diff + h)//2,  h//2, imgheight + diff - h,imgheight - h//2))
         resized = im.crop((0,0, imgheight - h,imgheight - h))
-        #Image.ANTIALIAS
         
     elif imgwidth < imgheight:
         w = imghwidth - N * int( imgwidth//N )
@@ -135,7 +133,18 @@ def grid(nj, orgimage):
             x+=w
         y += h
         
-    
+    '''for t in nj:
+        img = lst[t[1]]
+        print(img)
+        img = Image.open(img)
+        if x < total_w and y < total_h:
+            result.paste(img,(x,y))
+            x += w
+        elif y < total_h:
+            x = 0
+            y += h
+            result.paste(img,(x,y))
+            x += w'''
         
     result.save(mypath+'final.jpeg')
     result.show()
@@ -148,5 +157,5 @@ def grid(nj, orgimage):
     #[os.remove(mypath+"tiles/"+file) for file in os.listdir(mypath+"tiles/") if file != '.DS_Store']
     
 #SplitImage('68_1.jpg', 3307)    
-si = SplitImage('test.jpg', 32)
+si = SplitImage('test.jpg', 44)
 grid(Final(si), 'resized.jpeg')
