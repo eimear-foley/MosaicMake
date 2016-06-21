@@ -1,16 +1,16 @@
-The Midweek Rescue Deal
+# The Midweek Rescue Deal
 Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wedges or twisted dough balls) and one dessert (exc. Ice-cream) for €15.99.
 
-CRUST 
+**Crust**
 - Classic
 - Italian
 - Thin and Crispy
 
-CHEESE 
+**Cheese**
 - reduced fat cheese
 - Mozzarella
 
-TOPPINGS
+**Toppings**
 - Anchovies
 - Baby Spinach  
 - Chicken Breast Strips
@@ -26,7 +26,7 @@ TOPPINGS
 - Mushrooms  
 - Olives  
 - Pepperoni
-- Pineapple  
+- ~~Pineapple~~
 - Pork Meatballs
 - Red Onions  
 - Roquito Sweet Chilli Peppers   
@@ -39,14 +39,14 @@ TOPPINGS
 - Tuna
 - Ventricina Salami
 
-SIDE
+**Side**
 - Garlic Pizza Bread
 - Potato Wedges
 - Twisted Dough Balls™ - Pepperoni
 - Twisted Dough Balls™ - Cheese
 - Twisted Dough Balls™ - Ham
 
-DESERT
+**Desert**
 - Chocolate Melt
 - Chocolate Brownies
 - Cookies
