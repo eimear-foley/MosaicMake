@@ -5,7 +5,7 @@ from os.path import isfile,join
 from math import sqrt
 from ColourCost import *
 from mosaicnj import *
-mypath= '/Users/claire/mosaic/'
+mypath = '/Users/claire/mosaic/'
 
 def SplitImage(img, N):
     #creates tiles from image given 
