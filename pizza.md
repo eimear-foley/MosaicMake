@@ -14,10 +14,10 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - ~~Anchovies~~
 - ~~Baby Spinach~~  
 - Chicken Breast Strips
-- Chorizo Sausage
+- ~~Chorizo Sausage~~
 - Cumberland Sausage
 - Domino's Herbs  
-- Garlic Butter  
+- ~~Garlic Butter~~  
 - ~~Greek Feta Cheese~~  
 - Green and Red Peppers  
 - ~~Ground Beef~~
@@ -29,7 +29,7 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - ~~Pineapple~~
 - Pork Meatballs
 - ~~Red Onions~~  
-- Roquito Sweet Chilli Peppers   
+- ~~Roquito Sweet Chilli Peppers   ~~
 - Smoked Bacon Rashers
 - ~~Sriracha Sauce~~   
 - SunBlush® baby plum tomatoes  
@@ -40,7 +40,7 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - Ventricina Salami
 
 **Side**
-- Garlic Pizza Bread
+- *Garlic Pizza Bread*
 - Potato Wedges
 - Twisted Dough Balls™ - Pepperoni
 - Twisted Dough Balls™ - Cheese
@@ -49,4 +49,4 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 **Desert**
 - Chocolate Melt
 - Chocolate Brownies
-- Cookies
+- *Cookies*
