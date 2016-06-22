@@ -17,7 +17,7 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - Roast Chicken
 - Italian Salami
 - Cajun Chicken
-- Chilli Beef
+- Chilli Beef gs
 - Sliced Sausage
 - Meatballs
 - Orange Pepper Chicken
@@ -31,12 +31,12 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - Red Onion
 - Tomatoes
 - Sundried Tomatoes
-- Black Olives
-- Jalapeno Peppers
+- Black Olives gs
+- Jalapeno Peppers gs
 - Sweet Peppadew Peppers
 - Pineapple
-- Tuna
-- Anchovies
+- Tuna gs
+- Anchovies gs
 - Goats Cheese
 - Feta Cheese
 - Baby Leaf Spinach
