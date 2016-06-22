@@ -70,7 +70,7 @@ def SplitImage(img, N):
     img.close()
     crop("resized.jpeg", N)
     tile_img = [f for f in listdir(mypath+"tiles/") if isfile(mypath+"tiles/"+f) if f.startswith('slices')]
-    tile_img.sort(key=natural_keys)
+    tile_img.sort(key=keys)
     rgbtiles = most_frequent_color(tile_img, 'tiles/')
     rgbimg = ResizeImg(tile_img[0])
     # a list of tuples containging rgb values are stored in variable 'rgbimg'
@@ -123,7 +123,7 @@ def ResizeImg(tile_image):
 
 def grid(nj, orgimage):
     lst = [f for f in listdir(mypath+"tiles/") if isfile(join(mypath+"tiles/", f)) if f != '.DS_Store']
-    lst.sort(key=natural_keys)
+    lst.sort(key=keys)
     print(lst)
     tile = Image.open(mypath+"tiles/"+lst[0])
     w,h = tile.size # width and height of tile
