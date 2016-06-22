@@ -12,7 +12,7 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 
 **Toppings**
 - ~~Anchovies~~
-- Baby Spinach  
+- ~~Baby Spinach~~  
 - Chicken Breast Strips
 - Chorizo Sausage
 - Cumberland Sausage
@@ -22,16 +22,16 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - Green and Red Peppers  
 - ~~Ground Beef~~
 - Ham
-- Jalapeno Peppers   
+- ~~Jalapeno Peppers~~   
 - ~~Mushrooms~~  
 - ~~Olives~~  
 - Pepperoni
 - ~~Pineapple~~
 - Pork Meatballs
-- Red Onions  
+- ~~Red Onions~~  
 - Roquito Sweet Chilli Peppers   
 - Smoked Bacon Rashers
-- Sriracha Sauce   
+- ~~Sriracha Sauce~~   
 - SunBlush® baby plum tomatoes  
 - ~~Sweetcorn~~  
 - Tandoori Chicken
