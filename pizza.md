@@ -23,24 +23,24 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - Orange Pepper Chicken **E**
 - Fajita Chicken
 - Buffalo Chicken **E**
-- Mushrooms
+- Mushrooms**CF**
 - Sweetcorn **E**
-- Pulled Pork
-- Green Peppers
-- Red Peppers
-- Red Onion **A**
+- Pulled Pork**CF**
+- Green Peppers**CF**
+- Red Peppers **CF**
+- Red Onion **A CF**
 - Tomatoes
 - Sundried Tomatoes
-- Black Olives
-- Jalapeno Peppers**G**
-- Sweet Peppadew Peppers
+- Black Olives **CF**
+- Jalapeno Peppers**G CF**
+- Sweet Peppadew Peppers **CF**
 - Pineapple **A E**
 - Tuna **E G**
-- Anchovies **A G E**
-- Goats Cheese **E**
-- Feta Cheese **E**
-- Baby Leaf Spinach
-- Crispy Onion Flakes **A E**
+- Anchovies **A G CF E**
+- Goats Cheese **E CF**
+- Feta Cheese **E CF**
+- Baby Leaf Spinach **CF**
+- Crispy Onion Flakes **A CF E**
 
 
 **Side**
