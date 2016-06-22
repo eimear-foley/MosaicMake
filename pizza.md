@@ -7,7 +7,7 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - Thin and Crispy
 
 **Cheese**
-- reduced fat cheese
+- ~~reduced fat cheese~~
 - Mozzarella
 
 **Toppings**
@@ -23,7 +23,7 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - ~~Ground Beef~~
 - Ham
 - Jalapeno Peppers   
-- Mushrooms  
+- ~~Mushrooms~~  
 - ~~Olives~~  
 - Pepperoni
 - ~~Pineapple~~
@@ -35,7 +35,7 @@ Buy one medium pizza (11'5"), one sumptuous side (garlic pizza bread, potato wed
 - SunBlush® baby plum tomatoes  
 - ~~Sweetcorn~~  
 - Tandoori Chicken
-- Tomato  
+- ~~Tomato~~  
 - ~~Tuna~~
 - Ventricina Salami
 
