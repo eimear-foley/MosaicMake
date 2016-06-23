@@ -1,4 +1,4 @@
-# Insight project
+# Photomosaic in Python
 
 **Aim**: To assign images to grid sections of larger image, sorted by closest average colour using the Assignment Problem.
 
@@ -25,4 +25,4 @@ There are two main areas to our project: processing the images and developing a 
 
 - [ ] Introduce a threshold for more accurate colour matches.
 
-- [ ] Develop a path/folder for mosaics to be created in.
+- [x] Develop a path/folder for mosaics to be created in.
