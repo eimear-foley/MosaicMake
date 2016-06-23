@@ -4,7 +4,7 @@ from os import listdir
 from os.path import isfile, join
 from ColourCost import *
 from mosaic1 import *
-from image_processing2 import *
+from get_rgb import *
 
 mypath = '/Users/alessianardotto/Numberjack/Numberjack/insight-project/'
 
