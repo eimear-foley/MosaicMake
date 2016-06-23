@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 from ColourCost import *
 from mosaic1 import *
-from image_processing2 import *
+from get_rgb import *
 
 mypath = '/Users/alessianardotto/Numberjack/Numberjack/insight-project/'
 
@@ -17,7 +17,6 @@ def SplitImage(img, N):
         h = imgheight - N * int(imgheight // N)
         #resized = img.crop(((diff + h)//2,  h//2, imgheight + diff - h,imgheight - h//2))
         resized = im.crop((0, 0, imgheight - h, imgheight - h))
-        # Image.ANTIALIAS
 
     elif imgwidth < imgheight:
         w = imghwidth - N * int(imgwidth // N)
@@ -68,7 +67,7 @@ def ResizeImg(tileWidth):
     lst = [f for f in listdir(mypath + "pictures/") if isfile(
         join(mypath + "pictures/", f)) if not f.endswith('.DS_Store')]
     lst.sort()
-    print('RESIZING IMAGES DONE')
+    print('RESIZING IMAGES')
     lst2 = []
 
     for im in lst:
