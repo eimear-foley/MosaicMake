@@ -14,10 +14,8 @@ def SplitImage(img, N):
     imgwidth, imgheight = im.size
     # Barry
     if imgwidth > imgheight:
-        diff = imgwidth - imgheight
         h = imgheight - N * int(imgheight // N)
         print("h = ", h)
-        #resized = img.crop(((diff + h)//2,  h//2, imgheight + diff - h,imgheight - h//2))
         resized = im.crop((0, 0, imgheight - h, imgheight - h))
         # Image.ANTIALIAS
 
@@ -63,7 +61,7 @@ def most_frequent_color(lst, folder):
 
 def ResizeImg(tileWidth):
     # Resizes all images in lst to the size of
-    # the split tiles of the original image
+    # the to chosen width and height of tiles of the original image
     # returns list of tuples containing rgb values
     print(tileWidth)
     lst = [f for f in listdir(mypath + "pictures/") if isfile(
@@ -112,12 +110,6 @@ def grid(nj, orgimage):
 
     result.save(mypath + 'final.jpeg')
     result.show()
-
-    # for f in tile_img:
-    # os.remove(mypath+"tiles/"+f)
-
-    #[os.remove(mypath+"mosaic_images/"+file) for file in os.listdir(mypath+"mosaic_images/")]
-    #[os.remove(mypath+"tiles/"+file) for file in os.listdir(mypath+"tiles/") if file != '.DS_Store']
 
 si = SplitImage('me.jpg', 8)
 grid(Final(si), 'resized.jpeg')
