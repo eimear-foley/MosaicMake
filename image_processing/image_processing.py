@@ -76,7 +76,7 @@ def ResizeImg(tileWidth):
         # resizes images
         img = img.resize((tileWidth, tileWidth), Image.ANTIALIAS)
         quality_val = 100
-        img.save(mypath + 'pictures/' + im, subsampling=0, quality=100)
+        img.save(mypath + 'pictures/' + im, subsampling=0, quality=quality_val)
         # saves resized images in mypath
         #img.save(mypath + 'pictures/' + im)
 
