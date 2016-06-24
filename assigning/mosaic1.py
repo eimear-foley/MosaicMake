@@ -43,7 +43,7 @@ def solve(tup):
 
     solver = model.load(param['solver'])
     solver.setVerbosity(param['verbose'])
-    solver.setTimeLimit(param['tcutoff'])
+    # solver.setTimeLimit(param['tcutoff'])
     solver.solve()
 
     if solver.is_sat():
