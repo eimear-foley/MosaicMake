@@ -36,7 +36,7 @@ def get_model(param):
 
 def solve(tup):
 
-    param = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30,
+    param = {'solver': 'SCIP', 'verbose': 1, 'tcutoff': 30,
              'inputtable': DiffTable(tup)}
 
     matrix, cost, model = get_model(param)
@@ -48,8 +48,8 @@ def solve(tup):
 
     if solver.is_sat():
         print(str(matrix))
-        return flatten(matrix)
         print("Time:", solver.getTime())
+        return flatten(matrix)
     elif solver.is_unsat():
         print('Unsatisfiable')
     else:
