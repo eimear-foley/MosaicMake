@@ -33,51 +33,32 @@ def SplitImage(img, N):
     w2, h2 = im2.size
     print('CREATING TILES')
     rgb_values = get_rgb('resized.jpeg', N, w2, h2)
-
+    # a list of tuples containging RGB values are stored in variable 'rgbimg'
     rgbimg = ResizeImg(w2 // N)
-    # a list of tuples containging rgb values are stored in variable 'rgbimg'
-    # returns a list of rgb values in tuples
 
     return rgb_values, rgbimg
-
-
-def most_frequent_color(lst, folder):
-    # Finds most frequntly occuring color
-    # in each image in the list
-    rgb = []
-    for image in lst:
-        img = Image.open(mypath + folder + image)
-        w, h = img.size
-        pixels = img.convert('RGB').getcolors(w * h)
-        most_frequent_pixel = pixels[0]
-        for count, color in pixels:
-            if count > most_frequent_pixel[0]:
-                most_frequent_pixel = (count, color)
-        rgb += [most_frequent_pixel[1]]
-        print(image, ":", most_frequent_pixel[1])
-    return rgb
-
+    
 
 def ResizeImg(tileWidth):
     # Resizes all images in lst to the size of
-    # the split tiles of the original image
+    # the split tiles of the original image and
     # returns list of tuples containing rgb values
 
-    lst = [f for f in listdir(mypath + "pictures/") if isfile(
+    pictures = [f for f in listdir(mypath + "pictures/") if isfile(
         join(mypath + "pictures/", f)) if not f.endswith('.DS_Store')]
-    lst.sort()
-    lst2 = []
+    pictures.sort()
+    rgb_list = []
     print('RESIZING TILES')
-    for im in lst:
-        lst2 += most_frequent_color([im], 'pictures/')
+    for im in pictures:
         img = Image.open(mypath + "pictures/" + im)
         # resizes images
         img = img.resize((tileWidth, tileWidth), Image.ANTIALIAS)
         quality_val = 100
-        img.save(mypath + 'pictures/' + im, subsampling=0, quality=quality_val)
-        # saves resized images in mypath
+        img.save(mypath + 'pictures/' + im, subsampling = 0, quality = quality_val)
+        # saves resized images in mypath   
+        rgb_list += [(get_average_color(0, 0, tileWidth, mypath + 'pictures/' + im))]
 
-    return lst2
+    return rgb_list
 
 
 def grid(nj, orgimage):
@@ -96,7 +77,8 @@ def grid(nj, orgimage):
     t = 0
     result = Image.new('RGB', (total_w, total_h))  # new image
     # print(nj)
-    while y + h <= total_h and t < len(nj):
+    nj_len = len(nj)
+    while y + h <= total_h and t < nj_len:
         x = 0
         while x + w <= total_w:
             img = lst[nj[t][1]]
@@ -116,5 +98,5 @@ def grid(nj, orgimage):
     res.save(mypath + 'filter.jpeg')
     res.show()
 
-si = SplitImage('me.jpg', 30)
+si = SplitImage('me.jpg', 20)
 grid(Final(si), 'resized.jpeg')
