@@ -16,13 +16,12 @@
   -moz-border-radius: .5em;
   border-radius: .5em;
   cursor: pointer;
-  animation-name: example;
-  animation-duration: 4s;
+;
 }
 
 
 .jigsaw1,
-.jigsaw1 .t, jigsaw1 .r {
+.jigsaw1 .t, .jigsaw1 .r {
  background-color: #0284cf; 
  animation-name: example;
 animation-duration: 4s;
