@@ -1,10 +1,10 @@
-@keyframes example {
-    0%   {background-color: red;}
-    25%  {background-color: yellow;}
-    50%  {background-color: blue;}
-    100% {background-color: green;}
+@keyframes loading {
+    0%   {background-color: red; }
+    25%  {background-color: yellow; transform: rotate(90deg); }
+    50%  {background-color: blue; transform: rotate(180deg); }
+    75% {background-color: green; transform: rotate(270deg); }
+    100% {background-color: red; transform: rotate(360deg); }
 }
-
 
 
 .jigsaw1 {
@@ -24,8 +24,8 @@
 .jigsaw1,
 .jigsaw1 .t, .jigsaw1 .r {
  background-color: #0284cf; 
- animation-name: example;
-animation-duration: 4s;
+ animation-name: loading;
+animation-duration: 3s;
 }
 
 
