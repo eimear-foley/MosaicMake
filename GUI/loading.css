@@ -6,6 +6,13 @@
     100% {background-color: red; transform: rotate(360deg); }
 }
 
+@keyframes letters {
+  0% {color:black;}
+  12% {color: #c9c9c9;}
+  33% {color: #888;}
+  100% {color: black;}
+}
+
 
 .jigsaw1 {
   width: 6em;
@@ -75,5 +82,54 @@ animation-iteration-count: infinite;
   -moz-border-radius: 4em;
   border-radius: 4em;
   background-color: #fff;
+}
+
+
+
+.loading b {
+  animation-name: letters;
+ animation-duration: 3s;
+ animation-iteration-count: infinite;
+}
+
+.loading #l{
+
+  animation-delay: 0s;
+}
+
+#o{
+  animation-delay: 0.2s;
+}
+
+#a{
+  animation-delay: 0.4s;
+}
+
+#d{
+  animation-delay: 0.6s;
+}
+
+#i{
+  animation-delay: 0.8s;
+}
+
+#n{
+  animation-delay: 1.0s;
+}
+
+#g{
+  animation-delay: 1.2s;
+}
+
+#d1{
+  animation-delay: 1.4s;
+}
+
+#d2{
+  animation-delay: 1.6s;
+}
+
+#d3{
+  animation-delay: 1.8s;
 }
 
