@@ -86,10 +86,11 @@ animation-iteration-count: infinite;
 
 
 
-.loading b {
-  animation-name: letters;
- animation-duration: 1.5s;
- animation-iteration-count: infinite;
+.loading p {
+    display: inline;
+    animation-name: letters;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
 }
 
 .loading #l{
