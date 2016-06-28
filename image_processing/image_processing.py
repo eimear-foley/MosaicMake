@@ -69,13 +69,15 @@ def grid(nj, orgimage):
     lst.sort()
     print('SORTING DONE')
     tile = Image.open(mypath + "pictures/" + lst[0])
-    w, h = tile.size  # width and height of tile
+    # width and height of tile
+    w, h = tile.size  
     orgimage = Image.open(orgimage)
     total_w, total_h = orgimage.size
     x = 0
     y = 0
     t = 0
-    result = Image.new('RGB', (total_w, total_h))  # new image
+    # new image
+    result = Image.new('RGB', (total_w, total_h))  
     # print(nj)
     nj_len = len(nj)
     while y + h <= total_h and t < nj_len:
@@ -89,11 +91,11 @@ def grid(nj, orgimage):
         y += h
 
     result.save(mypath + 'final.jpeg')
-    result.show()
+    # result.show()
     im2 = Image.open(mypath + 'resized.jpeg')
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
     im3.save(mypath + 'fe.jpeg')
-    im3.show()
+    # im3.show()
     res = Image.blend(result, im3, 0.25)
     res.save(mypath + 'filter.jpeg')
     res.show()
