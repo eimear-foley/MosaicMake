@@ -16,7 +16,8 @@
   -moz-border-radius: .5em;
   border-radius: .5em;
   cursor: pointer;
-;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 
