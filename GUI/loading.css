@@ -7,11 +7,11 @@
 }
 
 @keyframes letters {
-  0% {color:black;}
-  12% {color: #c9c9c9;}
-  33% {color: #888;}
-  100% {color: black;}
+  0% {transform: translateY(0px);}
+  33% {transform: translateY(-10px);}
+  66% {transform: translateY(0px);}
 }
+
 
 
 .jigsaw1 {
