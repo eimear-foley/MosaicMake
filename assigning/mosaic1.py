@@ -28,7 +28,7 @@ def get_model(param):
         # only one chosen value per row
         [Sum(row) == 1 for row in matrix.row],
         # only one chosen value per column
-        [Sum(col) <= 1 for col in matrix.col]
+        # [Sum(col) <= 1 for col in matrix.col]
     )
 
     return matrix, cost, model
