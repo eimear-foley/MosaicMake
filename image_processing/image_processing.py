@@ -9,7 +9,11 @@ mypath = '/Users/alessianardotto/Numberjack/Numberjack/insight-project/'
 
 
 def SplitImage(img, N):
-    im = Image.open(img)
+    try:
+        im = Image.open(img)
+    except FileNotFoundError:
+        print('Error opening main image')
+        exit()
     imgwidth, imgheight = im.size
     # Barry
     if imgwidth > imgheight:
@@ -19,7 +23,7 @@ def SplitImage(img, N):
         resized = im.crop((0, 0, imgheight - h, imgheight - h))
 
     elif imgwidth < imgheight:
-        w = imghwidth - N * int(imgwidth // N)
+        w = imgwidth - N * int(imgwidth // N)
         resized = im.crop((0, 0, imgwidth - w, imgwidth - w))
 
     elif imgwidth == imgheight:
@@ -35,7 +39,7 @@ def SplitImage(img, N):
     rgb_values = get_rgb('resized.jpeg', N, w2, h2)
     # a list of tuples containging RGB values are stored in variable 'rgbimg'
     rgbimg = ResizeImg(w2 // N)
-
+    # lists of tuples
     return rgb_values, rgbimg
     
 
@@ -48,10 +52,14 @@ def ResizeImg(tileWidth):
         join(mypath + "pictures/", f)) if not f.endswith('.DS_Store')]
     pictures.sort()
     rgb_list = []
-    print('RESIZING TILES')
+    print('RESIZING IMAGES')
     for im in pictures:
-        img = Image.open(mypath + "pictures/" + im)
-        # resizes images
+        try:
+            img = Image.open(mypath + "pictures/" + im)
+        except IOError:
+            print('Problem opening %s' % (im))
+            continue
+        # resizes and saves images with the best quality as possible (100)
         img = img.resize((tileWidth, tileWidth), Image.ANTIALIAS)
         quality_val = 100
         img.save(mypath + 'pictures/' + im, subsampling = 0, quality = quality_val)
@@ -62,21 +70,23 @@ def ResizeImg(tileWidth):
 
 
 def grid(nj, orgimage):
-
+    # Grab all the file in the selected directory
     lst = [f for f in listdir(mypath + "pictures/") if isfile(
         join(mypath + "pictures/", f)) if f != '.DS_Store']
     print('SORTING NOW')
+    # Sort the files
     lst.sort()
     print('SORTING DONE')
     tile = Image.open(mypath + "pictures/" + lst[0])
-    # width and height of tile
-    w, h = tile.size  
+    # Get width and height of a tile
+    w, h = tile.size 
+    # opens and gets the dimensions of orgimage which is 'resized.jpeg'
     orgimage = Image.open(orgimage)
     total_w, total_h = orgimage.size
     x = 0
     y = 0
     t = 0
-    # new image
+    # new image with same dimensions as 'resized.jpeg'
     result = Image.new('RGB', (total_w, total_h))  
     # print(nj)
     nj_len = len(nj)
@@ -96,9 +106,9 @@ def grid(nj, orgimage):
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
     im3.save(mypath + 'fe.jpeg')
     # im3.show()
-    res = Image.blend(result, im3, 0.25)
+    res = Image.blend(result, im3, 0.3)
     res.save(mypath + 'filter.jpeg')
     res.show()
 
-si = SplitImage('me.jpg', 20)
+si = SplitImage('cat.jpg', 60)
 grid(Final(si), 'resized.jpeg')
