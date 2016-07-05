@@ -30,7 +30,7 @@ def get_model(param):
         # only one chosen value per row
         [Sum(row) == 1 for row in matrix.row],
         # only one chosen value per column
-        #[Sum(col) <= 20 for col in matrix.col]
+        # [Sum(col) <= 20 for col in matrix.col]
     )
 
     return matrix, cost, model
@@ -38,7 +38,7 @@ def get_model(param):
 
 def solve(table):
 
-    param = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30,
+    param = {'solver': 'SCIP', 'verbose': 1, 'tcutoff': 30,
              'inputtable': table}
 
     matrix, cost, model = get_model(param)
@@ -49,9 +49,8 @@ def solve(table):
     solver.solve()
 
     if solver.is_sat():
-        print(str(matrix))
-        return matrix
         print("Time:", solver.getTime())
+        return matrix
     elif solver.is_unsat():
         print('Unsatisfiable')
     else:
@@ -63,10 +62,6 @@ def Final(tup):
     N = int(sqrt(len(tup[0])))
     output = []
     for x in range(0, N*N, N):
-        print(x, N)
-        print("total_table", total_table)
         inputtable = total_table[x:x+N]
-        print(inputtable)
         output += flatten(solve(inputtable), x)
-        print(output)
     return output
