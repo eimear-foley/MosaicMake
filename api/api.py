@@ -9,10 +9,9 @@ def some_action(tileWidth, photo, p, i):
     
     response = requests.get(photo['source'])
     img = Image.open(BytesIO(response.content))
-    print('size:',img.size)
-    print(tileWidth)
     img = img.resize((tileWidth, tileWidth), Image.ANTIALIAS)
-    img.save(mypath+"%i_%i.jpeg" %(p, i))
+    quality_val = 100
+    img.save(mypath+"%i_%i.jpeg" %(p, i), subsampling = 0, quality = quality_val)
     return
 
 def get_photos(tileWidth):
