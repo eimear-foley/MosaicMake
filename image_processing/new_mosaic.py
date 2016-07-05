@@ -49,7 +49,7 @@ def SplitImage(img, N):
             rgbimg += [get_average_color(0, 0, tileWidth, mypath + 'mosaic_photos/'+ img)]
         except IOError:
             print('Problem with %s' % (img))
-			continue
+	    continue
     return rgb_value, rgbimg
 
 
