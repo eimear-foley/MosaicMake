@@ -14,6 +14,7 @@ def some_action(photo, p, i):
     
     response = requests.get(photo['source'])
     img = Image.open(BytesIO(response.content))
+    img = img.resize ((tileWidth, tileWidth), Image.ANTIALIAS)
     img.save("photos/%i_%i.jpeg" %(p, i))
 
     return(photo['source'])
