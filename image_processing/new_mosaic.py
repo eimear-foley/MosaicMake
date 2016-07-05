@@ -12,10 +12,10 @@ mypath = '/Users/claire/mosaic/'
 def SplitImage(img, N):
     print("SPLIT IMAGE")
     try:
-		im = Image.open(img)
-	except FileNotFoundError:
-		print('Error opening main image')
-		exit()
+	im = Image.open(img)
+    except FileNotFoundError:
+        print('Error opening main image')
+	exit()
     imgwidth, imgheight = im.size
     if imgwidth > imgheight:
         diff = imgwidth - imgheight
