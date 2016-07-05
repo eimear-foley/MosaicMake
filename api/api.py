@@ -35,8 +35,11 @@ def get_photos(tileWidth):
             # Facebook.
             img = 0
             for photo in photos['data']:
-                some_action(tileWidth, photo, page, img)
-                img += 1
+                try:
+                    some_action(tileWidth, photo, page, img)
+                    img += 1
+                except:
+                    continue
 
             # Attempt to make a request to the next page of data, if it exists.
             photos = requests.get(photos['paging']['next']).json()    
