@@ -55,20 +55,16 @@ if http_cookie_header:
    				</form>
 				"""
 
-
-
 print("Content-Type: text/html")
 print()
 
 print("""
     <!DOCTYPE html>
     <html>
-
         <head>
             <link href="default.css" rel="stylesheet" type="text/css" media="all" />
             <title>Try</title>
         </head>
-        
         <body>
             <a href="#" class="back-to-top"><br>Back to Top</a>
             <div id="header-wrapper">
@@ -87,7 +83,6 @@ print("""
                     </div>
                 </div>
             </div>
-
             <div class="container">
                 <div class="title">
                     <h2>%s</h2>
@@ -95,12 +90,10 @@ print("""
                 %s
                 %s
             </div>
-
             <div id="copyright" class="container">
                 <p>&copy; Untitled. All rights reserved. | released under the <a href="http://templated.co/license">Creative Commons Attribution</a> 
                 license | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
             </div>
         </body>
-
     </html>
 """ % (title, message, result))
