@@ -33,7 +33,7 @@ if http_cookie_header:
    		    open(filepath + fn, 'wb').write(fileitem.file.read())
                     title = "These images wil be used to make your mosaic!"
                     message = """Are you okay with these images? <a id="do_the_program">Yes</a> <a href="index.html">No</a>"""
-   		    result += """<img src="%s">"""%(filepath)
+   		    result += """<img id="bigimg" src="%s">"""%(filepath)
    		    result += """<div class="img_container">"""
    		    for img in listdir(filepath + "littleimgs/"):
    			imgpath = join(filepath + "littleimgs", img)
