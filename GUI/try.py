@@ -21,33 +21,32 @@ if http_cookie_header:
         sid = cookie["sid"].value
         session_store = open("sessions/sess_" + sid, writeback = False)
         if session_store.get("authenticated"):
-			form_data = FieldStorage()
-			if len(form_data) != 0:
-				fileitem = form_data.getfirst("filename", "").strip()
-		        if fileitem.filename:
-  	 				# strip leading path from file name to avoid 
-   					# directory traversal attacks
-   					fn = os.path.basename(fileitem.filename)
-   					filepath = "/tmp/temp_%s/" %(sid)
-   					open(filepath + fn, 'wb').write(fileitem.file.read())
+	    form_data = FieldStorage()
+	    if len(form_data) != 0:
+	    	fileitem = form_data.getfirst("filename", "").strip()
+            	if fileitem.filename:
+  	 	    # strip leading path from file name to avoid 
+   		    # directory traversal attacks
+   		    fn = os.path.basename(fileitem.filename)
+   		    filepath = "/tmp/temp_%s/" %(sid)
+   		    open(filepath + fn, 'wb').write(fileitem.file.read())
                     title = "These images wil be used to make your mosaic!"
                     message = """Are you okay with these images? <a id="do_the_program">Yes</a> <a href="index.html">No</a>"""
-   				    result += """<img src="%s">"""%(filepath)
-   				    result += """<div class="img_container">"""
-   					for img in listdir(filepath + "littleimgs/"):
-   						imgpath = join(filepath + "littleimgs", img)
-   						if isfile(imgpath):
-   							result += """<img src="%s">""" %(imgpath)
-   					result += "</div>"
-				else:
-                    title = "Error"
-   					result = "<p>No file was uploaded</p>"
+   		    result += """<img src="%s">"""%(filepath)
+   		    result += """<div class="img_container">"""
+   		    for img in listdir(filepath + "littleimgs/"):
+   			imgpath = join(filepath + "littleimgs", img)
+   			if isfile(imgpath):
+   			    result += """<img src="%s">""" %(imgpath)
+   			    result += "</div>"
 			else:
-                title = "Upload your photo!"
-				result = """
-  			 	<form enctype="multipart/form-data" 
-                     action="save_file.py" method="post">
-   					<p>File: <input type="file" name="filename" /></p>
+                title = "Error"
+   			    result = "<p>No file was uploaded</p>"
+		else:
+            title = "Upload your photo!"
+		    result = """<form enctype="multipart/form-data" 
+                        action="save_file.py" method="post">
+   				<p>File: <input type="file" name="filename" /></p>
    				<p><input type="submit" value="Upload" /></p>
    				</form>
 				"""
