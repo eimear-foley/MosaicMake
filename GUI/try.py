@@ -61,6 +61,7 @@ print("""
         <head>
             <link href="default.css" rel="stylesheet" type="text/css" media="all" />
             <title>Try</title>
+            <script src="try.js"></script>
         </head>
         <body>
             <a href="#" class="back-to-top"><br>Back to Top</a>
