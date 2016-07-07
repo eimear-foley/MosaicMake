@@ -5,12 +5,16 @@ from ColourCost import *
 from mosaic1 import *
 import timeit
 from apitmp import *
-mypath = '/home/gabrielle/mosaic/'
-import tempfile
-temp = tempfile.mkdtemp(prefix = 'temp')
-#os.rename(tmp,'/tmp/'+'%s' %('123456789'))
-#temp = 'tmp' + session_id
 import shutil
+import tempfile
+
+mypath = '/home/gabrielle/mosaic/'
+#session_id = '123456789'
+#rename variable 'temp' in line 14 to 'tmp' when using session_id
+temp = tempfile.mkdtemp(prefix = 'temp') 
+#os.rename(tmp,'/tmp/'+'%s' %(session_id)) 
+#temp = '/tmp/' + session_id
+
 
 
 def SplitImage(img, N):
