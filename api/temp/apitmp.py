@@ -16,11 +16,8 @@ def some_action(photo, p, i, tileWidth,temp):
     img = Image.open(BytesIO(response.content))
     #the picture is coming through
     img = img.resize ((tileWidth, tileWidth), Image.ANTIALIAS)
-    #temp = tempfile.TemporaryFile
     quality_val = 100
     img.save(temp+"/"+'%s%s%s%s' % ('photo',str(p),str(i),'.jpeg'), subsampling = 0, quality = quality_val)
-    #img.save("/home/gabrielle/mosaic/mosaic_images/photo%i_%i.jpeg" %(p, i))
-    #need to create new files but in the tmp folder
     return(photo['source'])
     
 
