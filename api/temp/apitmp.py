@@ -38,7 +38,8 @@ def get_photos(tileWidth, temp):
     # Wrap this block in a while loop so we can keep paginating requests until
     # finished.
     page = -1
-    #temp = tempfile.TemporaryFile()
+    count = 0
+    limit = 50
     while True:
         page += 1  
         try:
@@ -46,7 +47,12 @@ def get_photos(tileWidth, temp):
             # Facebook.
             img = 0
             for photo in photos['data']:
-                some_action(photo, page, img, tileWidth, temp)
+                if count < limit:
+                    count += 1
+                    try:
+                        some_action(photo, page, img, tileWidth, temp)
+                    except:
+                        continue
                 img += 1
             # Attempt to make a request to the next page of data, if it exists.
             photos = requests.get(photos['paging']['next']).json()    
