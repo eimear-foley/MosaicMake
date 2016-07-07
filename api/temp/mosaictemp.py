@@ -8,6 +8,8 @@ from apitmp import *
 mypath = '/home/gabrielle/mosaic/'
 import tempfile
 temp = tempfile.mkdtemp(prefix = 'temp')
+#os.rename(tmp,'/tmp/'+'%s' %('123456789'))
+#temp = 'tmp' + session_id
 import shutil
 
 
