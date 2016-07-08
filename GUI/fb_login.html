@@ -17,6 +17,7 @@
             if (response.status === 'connected') {
               // Logged into your app and Facebook.
               var access_token = FB.getAuthResponse.accessToken;
+              console.log(access_token, "status_change");
               testAPI();
             } else if (response.status === 'not_authorized') {
               // The person is logged into Facebook, but not your app.
@@ -36,7 +37,8 @@
           function checkLoginState() {
             FB.getLoginStatus(function(response) {
               statusChangeCallback(response);
-                
+              var access_token = FB.getAuthResponse.accessToken;
+              console.log(access_token, "login_state");
             });
           }
 
