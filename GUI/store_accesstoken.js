@@ -1,7 +1,7 @@
 
 //to be called in another function with accesstoken as the parameter
 function call_mosaic_make(accesstoken){
-	var url = "store_in_sess.py?token=" + acesstoken;
+	var url = "cgi-bin/store_in_sess.py?token=" + acesstoken;
 	request = new XMLHttpRequest();
  	request.addEventListener('readystatechange', handle_response1, false);
  	request.open('GET', url, true);
