@@ -12,9 +12,9 @@ if len(form_data) != 0:
 	cookie = SimpleCookie()
 	cookie['token'] = token
 	session_store = open("sessions/sess_" + token, writeback=True)
-    	session_store['authenticated'] = True
-    	session_store['token'] = token
-    	session_store.close()
-    	print("good")
+	session_store['authenticated'] = True
+	session_store['token'] = token
+	session_store.close()
+	print("good")
 else:
 	print("problem")
