@@ -17,7 +17,7 @@ function handle_response1(){
 	      		console.log("ERROR!");
 	      		//something to show user stuff didn't work D:
 	      	} else if (request.responseText.trim() === 'good'){
-	      		window.location.href = "/cgi-bin/try.py";
+	      		window.location.href = "cgi-bin/try.py";
 
 	     	}
 	    }
