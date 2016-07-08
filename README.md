@@ -1,5 +1,7 @@
 # Photomosaic in Python
 
+####VAR/WWW/HTML for server path to html
+
 **Aim**: To assign images to grid sections of larger image, sorted by closest average colour using the Assignment Problem.
 
 There are two main areas to our project: processing the images and developing a model which will calculate the best matches between images and grid positions. 
