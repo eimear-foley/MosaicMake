@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Facebook Login JavaScript Example</title>
+        <title>MosaicMake</title>
+        <link rel="icon" href="jigsaw.png">
         <meta charset="UTF-8">
+        <style>
+                body{
+                        font-family: 'Source Sans Pro', sans-serif;
+                        font-size: 17px;
+                        font-weight: 400;
+                }
+                #place{
+                        margin: auto;
+                        padding: 2em;
+                        height: 30%;
+                        width: 30%;
+                        border: solid #627aac 1px;
+                        border-radius: .5em;
+                        background: #f5fafc;
+                }
+        </style>
     </head>
     <body>
         <script>
+        var access_token;
           // This is called with the results from from FB.getLoginStatus().
           function statusChangeCallback(response) {
             console.log('statusChangeCallback');
@@ -16,32 +34,28 @@
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
               // Logged into your app and Facebook.
-              var access_token = FB.getAuthResponse().accessToken;
+               access_token = FB.getAuthResponse().accessToken;
               console.log(access_token, "status_change");
               testAPI();
             } else if (response.status === 'not_authorized') {
               // The person is logged into Facebook, but not your app.
-              document.getElementById('status').innerHTML = 'Please log ' +
-                'into this app.';
+              document.getElementById('status').innerHTML = 'Log in to allow  <a href="#" style="color: #CC0000">MosaicMake</a> access to your photos to build your mosaic!';
             } else {
               // The person is not logged into Facebook, so we're not sure if
               // they are logged into this app or not.
-              document.getElementById('status').innerHTML = 'Please log ' +
-                'into Facebook.';
+              document.getElementById('status').innerHTML = 'Log in to allow <a href="#" style="color: CC0000;">MosaicMake</a> access to your photos to build your mosaic!';
             }
           }
-
           // This function is called when someone finishes with the Login
           // Button.  See the onlogin handler attached to it in the sample
           // code below.
           function checkLoginState() {
             FB.getLoginStatus(function(response) {
               statusChangeCallback(response);
-              var access_token = FB.getAuthResponse().accessToken;
+               access_token = FB.getAuthResponse().accessToken;
               console.log(access_token, "login_state");
             });
           }
-
           window.fbAsyncInit = function() {
           FB.init({
             appId      : '1730633540558567',
@@ -50,7 +64,6 @@
             xfbml      : true,  // parse social plugins on this page
             version    : 'v2.5' // use graph api version 2.5
           });
-
           // Now that we've initialized the JavaScript SDK, we call 
           // FB.getLoginStatus().  This function gets the state of the
           // person visiting this page and can return one of three states to
@@ -62,15 +75,12 @@
           //    your app or not.
           //
           // These three cases are handled in the callback function.
-
           FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
-            var access_token = FB.getAuthResponse().accessToken;
+             access_token = FB.getAuthResponse().accessToken;
             console.log(access_token, "get_login");
           });
-
           };
-
           // Load the SDK asynchronously
           (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -89,8 +99,42 @@
               
               document.getElementById('status').innerHTML =
                 'Thanks for logging in, ' + response.name + '!';
+                call_mosaic_make(access_token);
             });
           }
+
+var request;
+
+//to be called in another function with accesstoken as the parameter
+function call_mosaic_make(accesstoken){
+        console.log("call_mosaic_make");
+        var url = "cgi-bin/store_in_sess.py?token=" + accesstoken;
+        request = new XMLHttpRequest();
+        request.addEventListener('readystatechange', handle_response1, false);
+        request.open('GET', url, false);
+        request.send(null);
+}
+
+
+//if all's good redirect to try.py
+function handle_response1(){
+console.log("1");
+  if ( request.readyState === 4 ) {
+        console.log("2");
+        console.log("request.status= " + request.status);
+        if ( request.status === 200 ) {
+                console.log("3");
+                console.log("response=" + " " + request.responseText.trim());
+            if(request.responseText.trim() === 'problem') {
+                        console.log("ERROR!");
+                        //something to show user stuff didn't work D:
+                } else if (request.responseText.trim() === 'good'){
+                        window.location.href = "cgi-bin/try.py";
+
+                }
+            }
+        }
+}  
         </script>
         
 
@@ -99,19 +143,12 @@
       the JavaScript SDK to present a graphical Login button that triggers
       the FB.login() function when clicked.
     -->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1730633540558567";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-        
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        <div id="place">
+        <fb:login-button data-size="large" scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
-
+        <br><br>
         <div id="status">
+        </div>
         </div>
 
     </body>
