@@ -2,6 +2,7 @@
 
 ##Apache2 server changes
 VAR/WWW/HTML for server path to html
+
 /etc/apache2/mods-enabled/deflate.conf *added* `text/javascript`
 
 **Aim**: To assign images to grid sections of larger image, sorted by closest average colour using the Assignment Problem.
