@@ -92,10 +92,11 @@ def get_average_color(w, h, n, image):
     return ((r // count), (g // count), (b // count))
 
 
-def grid(nj, orgimage):
-    mosaic_images = [f for f in listdir(temp+"/") if isfile(
-        join(temp+"/", f)) if f != '.DS_Store' if f.endswith("png")]
-    tile = Image.open(temp+"/" + mosaic_images[0])
+def grid(nj, orgimage, token):
+    
+    mosaic_images = [f for f in listdir('/tmp_fold/usr_' + token +'/images/') if isfile(
+        join('/tmp_fold/usr_' + token +'/images/', f)) if f != '.DS_Store' if f.endswith("png")]
+    tile = Image.open('/tmp_fold/usr_' + token +'/images/' + mosaic_images[0])
     w, h = tile.size  # width and height of tile
     print(w, h)
     orgimage = Image.open(orgimage)
@@ -126,4 +127,4 @@ def grid(nj, orgimage):
 
     
 si = SplitImage('test.jpg', 60)
-grid(Final(si), 'resized.png')
+grid(Final(si), 'resized.png', token)
