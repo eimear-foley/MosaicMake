@@ -10,10 +10,15 @@ import tempfile
 
 mypath = '/home/gabrielle/mosaic/'
 #session_id = '123456789'
-#rename variable 'temp' in line 14 to 'tmp' when using session_id
-temp = tempfile.mkdtemp(prefix = 'temp') 
-#os.rename(tmp,'/tmp/'+'%s' %(session_id)) 
-#temp = '/tmp/' + session_id
+#change tmp with cgi-bin
+#creates a directory with folder 'session_id' containing folder 'images' and original image
+temp = os.makedirs('/tmp/temps/session/'+session_id+'/images')
+#just a copy of an image was put in here, this is where the orgimage would go, change tmp to cgi-bin
+#line 17 not required
+shutil.copy2('/home/gabrielle/mosaic/kitty.jpeg', '/tmp/temps/'+session_id+'/')
+#change tmp to cgi-bin
+temp = '/tmp/temps/'+session_id+'/images/'
+
 
 
 
