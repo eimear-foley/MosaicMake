@@ -7,9 +7,6 @@ from apitmp import *
 import shutil
 import tempfile
 
-#this copies an image from one dir to another
-#shutil.copy2('/home/gabrielle/mosaic/kitty.jpeg', '/tmp/temps/user'+token+'/')
-
 
 def SplitImage(img, N, token):
     temp = os.makedirs('/tmp/temps/user'+token+'/images')
@@ -33,7 +30,6 @@ def SplitImage(img, N, token):
         d = imgheight - N * int(imgheight // N)
         resized = im.crop((0, 0, imgheight - d, imgheight - d))
 
-    #print('MAIN IMAGE RESIZED')
     resized.save('/tmp/temps/user'+token +'/' + "resized.jpeg")
 
     im2 = Image.open('/tmp/temps/user'+token +'/'+ "resized.jpeg")
@@ -46,7 +42,6 @@ def SplitImage(img, N, token):
     mosaic_images = [f for f in listdir(temp) if isfile(
         join(temp, f)) if not f.endswith('.DS_Store') if f.endswith('jpeg')]
     mosaic_images.sort()
-    #print(mosaic_images)
     rgbimg = []
     for img in mosaic_images:
         try:
@@ -83,8 +78,7 @@ def get_average_color(w, h, n, image):
     """ Returns a 3-tuple containing the RGB value of the average color of the
     given square bounded area of length = n whose origin (top left corner) 
     is (x, y) in the given image"""
-    #print("G_A_C")
-    #print(w, h)
+
     image = Image.open(image).load()
     r, g, b = 0, 0, 0
     count = 0
@@ -95,7 +89,6 @@ def get_average_color(w, h, n, image):
             g += pixlg
             b += pixlb
             count += 1
-    #print("DONE GAC")
     return ((r // count), (g // count), (b // count))
 
 
