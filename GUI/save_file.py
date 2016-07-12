@@ -15,50 +15,50 @@ print()
 
 form_data = FieldStorage()
 message = """<p>You do not have permissions to access this page.</p>
-                <ul>
-                    <li><a href="register.py">Register</a></li>
-                    <li><a href="index.py">Login</a></li>
-                </ul> """
+				<ul>
+					<li><a href="register.py">Register</a></li>
+					<li><a href="index.py">Login</a></li>
+				</ul> """
 
 try:
-    # check if you have the permissions to access the protected page
-    # must be an admin
-    if protect_admin():
-        # Get filename
-        fileitem = form_data['filename']
-        # get picture's name, price and tag
-        name = escape(form_data.getfirst('picture_name', '').strip())
-        price = escape(form_data.getfirst('price', '').strip())
-        tag = escape(form_data.getfirst('tag', '').strip())
+	# check if you have the permissions to access the protected page
+	# must be an admin
+	if protect_admin():
+		# Get filename
+		fileitem = form_data['filename']
+		# get picture's name, price and tag
+		name = escape(form_data.getfirst('picture_name', '').strip())
+		price = escape(form_data.getfirst('price', '').strip())
+		tag = escape(form_data.getfirst('tag', '').strip())
 
-        # test if the file was uploaded
-        if fileitem.filename:
-            # strip leading path from file name to avoid 
-            # directory traversal attacks
-            fn = os.path.basename(fileitem.filename.replace("\\", "/" ))
-            open('pictures/' + fn, 'wb').write(fileitem.file.read())
-            message = 'The file "' + fn + '" was uploaded successfully'
+		# test if the file was uploaded
+		if fileitem.filename:
+			# strip leading path from file name to avoid 
+			# directory traversal attacks
+			fn = os.path.basename(fileitem.filename.replace("\\", "/" ))
+			open('pictures/' + fn, 'wb').write(fileitem.file.read())
+			message = 'The file "' + fn + '" was uploaded successfully'
 
-            # open the connection to the Database
-            # put this between the try/except always
-            connection = db.connect('cs1dev.ucc.ie', 'an11', 'aocoobei', '2019_an11')
-            # create a cursor object for executing SQL statements
-            cursor = connection.cursor(db.cursors.DictCursor)
-            # insert the picture in the Database
-            cursor.execute("""INSERT INTO pictures (picture, name, price, tag)
-                                VALUES (%s, %s, %s, %s)""" , ('<figure><img src="pictures/' + fn + '"></figure>', name, price, tag))
-            # commit the connection to store it in the Database
-            connection.commit()
-            # close the cursor and the connection to the Database
-            cursor.close()
-            connection.close()
-        # if no file has been uploaded
-        else:
-           message = '<p>No file was uploaded %s</p>' % (fileitem.filename)
+			# open the connection to the Database
+			# put this between the try/except always
+			connection = db.connect('cs1dev.ucc.ie', 'an11', 'aocoobei', '2019_an11')
+			# create a cursor object for executing SQL statements
+			cursor = connection.cursor(db.cursors.DictCursor)
+			# insert the picture in the Database
+			cursor.execute("""INSERT INTO pictures (picture, name, price, tag)
+								VALUES (%s, %s, %s, %s)""" , ('<figure><img src="pictures/' + fn + '"></figure>', name, price, tag))
+			# commit the connection to store it in the Database
+			connection.commit()
+			# close the cursor and the connection to the Database
+			cursor.close()
+			connection.close()
+		# if no file has been uploaded
+		else:
+		   message = '<p>No file was uploaded %s</p>' % (fileitem.filename)
 # if an error occurred
 except IOError:
-    message = '<p>Sorry! We are experiencing problems at the moment. Please call back later.</p>'
-   
+	message = '<p>Sorry! We are experiencing problems at the moment. Please call back later.</p>'
+
 print("""
 	<!DOCTYPE html>
 	<html lang="en">
