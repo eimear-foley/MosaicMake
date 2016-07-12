@@ -49,10 +49,7 @@ def SplitImage(img, N, token):
         except IOError:
             print("Error")
             continue
-    # a list of tuples containging rgb values are stored in variable 'rgbimg'
-    # returns a list of rgb values in tuples
-    
-    print(rgb_value, rgbimg)
+
     return rgb_value, rgbimg
 
 
@@ -62,7 +59,6 @@ def get_rgb(image, N, w, h):
     rgbimg = []
     htile = 0
     
-
     while htile < h:
         wtile = 0
         while wtile < w:
@@ -90,9 +86,7 @@ def get_average_color(w, h, n, image):
             b += pixlb
             count += 1
     return ((r // count), (g // count), (b // count))
-
-
-
+    
 
 def grid(nj, orgimage, token):
     #change tmp to cgi-bin
