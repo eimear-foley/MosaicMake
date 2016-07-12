@@ -133,21 +133,24 @@ def grid(nj, orgimage):
         x = 0
         while x + w <= total_w:
             img = mosaic_images[nj[t][1]]
-            #im = Image.open(mypath + "mosaic_images/" + img)
-            im = Image.open(temp+"/" + img)
+            #change tmp to cgi-bin
+            im = Image.open('/tmp/temps/'+session_id+"/" + img)
             result.paste(im, (x, y))
             t += 1
             x += w
         y += h
-    
-    result.save(mypath + 'res.jpeg')
-    im2 = Image.open('resized.jpeg') 
+    #change tmp to cgi-bin
+    result.save('/tmp/temps/'+session_id+'/' + 'res.jpeg')
+    #change tmp to cgi-bin
+    im2 = Image.open('/tmp/temps/'+session_id+'/'+'resized.jpeg') 
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    im3.save(mypath+'im3.jpeg')
+    #change tmp to cgi-bin
+    im3.save('/tmp/temps/'+session_id+'/'+'im3.jpeg')
     final = Image.blend(result, im3, 0.25)
-    final.save(mypath + 'final.jpeg')
-    #if os.path.isfile(temp+""):
-    shutil.rmtree(temp+"/")
+    #change tmp to cgi-bin
+    final.save('/tmp/temps/'+session_id+'/' + 'final.jpeg')
+    #deletes the user's folder
+    #shutil.rmtree(temp+"/"+session_id)
     #else:    
         #print("Error: %s/file not found" % temp)
     final.show()
