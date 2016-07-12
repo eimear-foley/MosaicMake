@@ -1,21 +1,25 @@
 from PIL import Image, ImageFilter
+import os
 from os import listdir
 from os.path import isfile, join
 from ColourCost import *
-from mosaic1 import *
-from get_rgb import *
+from new_nj import *
+import timeit
 from api import *
+import tempfile
+import shutil
 
-mypath = '/Users/claire/mosaic/'
 
-
-def SplitImage(img, N):
-    print("SPLIT IMAGE")
+def SplitImage(img, N, token):
     try:
-	im = Image.open(img)
+        im = Image.open(img)
     except FileNotFoundError:
         print('Error opening main image')
-	exit()
+        exit()
+        
+    temp = os.makedirs('temp_fold/usr_'+token+'/images')
+    temp = '/tmp/temps/'+token+'/images/'
+    
     imgwidth, imgheight = im.size
     if imgwidth > imgheight:
         diff = imgwidth - imgheight
@@ -30,38 +34,74 @@ def SplitImage(img, N):
         d = imgheight - N * int(imgheight // N)
         resized = im.crop((0, 0, imgheight - d, imgheight - d))
 
-    print('MAIN IMAGE RESIZED')
-    resized.save(mypath + "resized.jpeg")
-    im2 = Image.open(mypath + "resized.jpeg")
+    resized.save('/tmp_fold/usr_' + token + '/resized.png')
+
+    im2 = Image.open('/tmp_fold/usr_' + token + '/resized.png')
     w2, h2 = im2.size
+    
+    rgb_original = get_rgb('resized.png', N, w2, h2)
     tileWidth = w2 // N
-    rgb_value = get_rgb('resized.jpeg', N, w2, h2)
-    # resize all the images used in the final mosaic
-    get_photos(tileWidth)
-    mosaic_images = [f for f in listdir(mypath + "mosaic_photos/") if isfile(
-        join(mypath + "mosaic_photos/", f)) if not f.endswith('.DS_Store')]
+    get_photos(tileWidth, temp, token)#-- Photos are now collected when the access token is receicved
+    
+    
+    mosaic_images = [f for f in listdir(temp+"/") if isfile(
+        join(temp+"/", f)) if not f.endswith('.DS_Store') if f.endswith('png')]
     mosaic_images.sort()
-    # a list of tuples containging rgb values are stored in variable 'rgbimg'
-    # returns a list of rgb values in tuples
-    rgbimg = []
+    print(mosaic_images)
+    rgb_images = []
     for img in mosaic_images:
         try:
-            rgbimg += [get_average_color(0, 0, tileWidth, mypath + 'mosaic_photos/'+ img)]
+            rgb_images += [get_average_color(0, 0, tileWidth, temp+"/"+ img)]
         except IOError:
-            print('Problem with %s' % (img))
-	    continue
-    return rgb_value, rgbimg
+            print("Error")
+            continue
+    
+    
+    print(rgb_original, rgb_images)
+    return rgb_original, rgb_images
+
+
+def get_rgb(image, N, w, h):
+    div = w // N
+    rgbimg = []
+    htile = 0
+    while htile < h:
+        wtile = 0
+        while wtile < w:
+            r, g, b = get_average_color(wtile, htile, div, image)
+            rgbimg += [(r, g, b)]
+            wtile += div
+        htile += div
+    return rgbimg
+
+
+def get_average_color(w, h, n, image):
+    """ Returns a 3-tuple containing the RGB value of the average color of the
+    given square bounded area of length = n whose origin (top left corner) 
+    is (x, y) in the given image"""
+    image = Image.open(image).load()
+    r, g, b = 0, 0, 0
+    count = 0
+    for s in range(w, w + n):
+        for t in range(h, h + n):
+            pixlr, pixlg, pixlb = image[s, t]
+            r += pixlr
+            g += pixlg
+            b += pixlb
+            count += 1
+    return ((r // count), (g // count), (b // count))
 
 
 def grid(nj, orgimage):
-    mosaic_images = [f for f in listdir(mypath + "mosaic_photos/") if isfile(
-        join(mypath + "mosaic_photos/", f)) if f != '.DS_Store']
-    mosaic_images.sort()
-    tile = Image.open(mypath + "mosaic_photos/" + mosaic_images[0])
+    mosaic_images = [f for f in listdir(temp+"/") if isfile(
+        join(temp+"/", f)) if f != '.DS_Store' if f.endswith("png")]
+    tile = Image.open(temp+"/" + mosaic_images[0])
     w, h = tile.size  # width and height of tile
+    print(w, h)
     orgimage = Image.open(orgimage)
     total_w, total_h = orgimage.size
-    # x = 0
+    print(total_w, total_h)
+    x = 0
     y = 0
     t = 0
     result = Image.new('RGB', (total_w, total_h))  # new image
@@ -71,19 +111,19 @@ def grid(nj, orgimage):
         x = 0
         while x + w <= total_w:
             img = mosaic_images[nj[t][1]]
-            im = Image.open(mypath + "mosaic_photos/" + img)
+            im = Image.open(temp+"/" + img)
             result.paste(im, (x, y))
             t += 1
             x += w
         y += h
-    
-    result.save(mypath + 'res.jpeg')
-    im2 = Image.open('resized.jpeg') 
+    result.save('/tmp_fold/usr_' + token + 'res.png')
+    im2 = Image.open('resized.png') 
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    im3.save(mypath+'im3.jpeg')
+    im3.save('/tmp_fold/usr_' + token +'im3.png')
     final = Image.blend(result, im3, 0.25)
-    final.save(mypath+'final.jpeg')
+    final.save('/tmp_fold/usr_' + token+'/final.png')
     final.show()
+
     
-si = SplitImage('test.jpg', 100)
-grid(Final(si), 'resized.jpeg')
+si = SplitImage('test.jpg', 60)
+grid(Final(si), 'resized.png')
