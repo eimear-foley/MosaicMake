@@ -8,9 +8,7 @@ from apitmp import *
 import shutil
 import tempfile
 
-#token = '123456789'
-#just a copy of an image was put in here, this is where the orgimage would go, change tmp to cgi-bin
-#line 17 not required
+#this copies an image from one dir to another
 #shutil.copy2('/home/gabrielle/mosaic/kitty.jpeg', '/tmp/temps/user'+token+'/')
 
 
