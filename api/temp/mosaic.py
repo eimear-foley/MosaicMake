@@ -144,8 +144,6 @@ def grid(nj, orgimage, token):
     final.save('/tmp/temps/user'+token +'/'+ 'final.jpeg')
     #deletes the user's folder
     #shutil.rmtree('/tmp/temps/user'+token +'/')
-    #else:    
-        #print("Error: %s/file not found" % temp)
     final.show()
 
 #the parameter 'token' will have the access token passed through there
