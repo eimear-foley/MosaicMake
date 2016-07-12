@@ -153,5 +153,4 @@ def grid(nj, orgimage, token):
 #the parameter 'token' will have the access token passed through there
 si = SplitImage('kitty.jpeg', 50, '12345')
 #the parameter 'token' will have the access token passed through there
-si = SplitImage('kitty.jpeg', 50, '12345')
 grid(Final(si), 'resized.jpeg', '12345' )
