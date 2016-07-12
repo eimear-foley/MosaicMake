@@ -16,7 +16,6 @@ def some_action(tileWidth, photo, p, i, temp, token):
 def get_photos(tileWidth, temp, token):
     
     user = 'me'
-
     graph = facebook.GraphAPI(token)
     profile = graph.get_object(user)
     photos = graph.get_connections(profile['id'], 'photos')
