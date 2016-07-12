@@ -3,7 +3,6 @@ from os import listdir
 from os.path import isfile, join
 from ColourCost import *
 from mosaic1 import *
-import timeit
 from apitmp import *
 import shutil
 import tempfile
@@ -34,7 +33,7 @@ def SplitImage(img, N, token):
         d = imgheight - N * int(imgheight // N)
         resized = im.crop((0, 0, imgheight - d, imgheight - d))
 
-    print('MAIN IMAGE RESIZED')
+    #print('MAIN IMAGE RESIZED')
     resized.save('/tmp/temps/user'+token +'/' + "resized.jpeg")
 
     im2 = Image.open('/tmp/temps/user'+token +'/'+ "resized.jpeg")
@@ -47,7 +46,7 @@ def SplitImage(img, N, token):
     mosaic_images = [f for f in listdir(temp) if isfile(
         join(temp, f)) if not f.endswith('.DS_Store') if f.endswith('jpeg')]
     mosaic_images.sort()
-    print(mosaic_images)
+    #print(mosaic_images)
     rgbimg = []
     for img in mosaic_images:
         try:
@@ -84,8 +83,8 @@ def get_average_color(w, h, n, image):
     """ Returns a 3-tuple containing the RGB value of the average color of the
     given square bounded area of length = n whose origin (top left corner) 
     is (x, y) in the given image"""
-    print("G_A_C")
-    print(w, h)
+    #print("G_A_C")
+    #print(w, h)
     image = Image.open(image).load()
     r, g, b = 0, 0, 0
     count = 0
@@ -96,7 +95,7 @@ def get_average_color(w, h, n, image):
             g += pixlg
             b += pixlb
             count += 1
-    print("DONE GAC")
+    #print("DONE GAC")
     return ((r // count), (g // count), (b // count))
 
 
@@ -107,11 +106,10 @@ def grid(nj, orgimage, token):
     mosaic_images = [f for f in listdir('/tmp/temps/user'+token+'/images/') if isfile(
         join('/tmp/temps/user'+token+'/images/', f)) if f != '.DS_Store' if f.endswith("jpeg")]
     mosaic_images.sort()
-    print("LIST WITH IMAGES")
+    #print("LIST WITH IMAGES")
     #change tmp to cgi-bin
     tile = Image.open('/tmp/temps/user'+token+'/images/' + mosaic_images[0])
     w, h = tile.size  # width and height of tile
-    print(w, h)
     #change tmp to cgi-bin
     orgimage = Image.open('/tmp/temps/user'+token +'/'+orgimage)
     total_w, total_h = orgimage.size
