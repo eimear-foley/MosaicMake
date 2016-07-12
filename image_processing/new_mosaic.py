@@ -125,6 +125,3 @@ def grid(nj, orgimage, token):
     final.save('/tmp_fold/usr_' + token+'/final.png')
     final.show()
 
-    
-si = SplitImage('test.jpg', 60)
-grid(Final(si), 'resized.png', token)
