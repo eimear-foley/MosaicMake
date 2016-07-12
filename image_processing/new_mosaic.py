@@ -7,7 +7,6 @@ from new_nj import *
 import timeit
 from api import *
 import tempfile
-import shutil
 
 
 def SplitImage(img, N, token):
