@@ -18,7 +18,7 @@ def SplitImage(img, N, token):
         exit()
         
     temp = os.makedirs('temp_fold/usr_'+token+'/images')
-    temp = '/tmp/temps/'+token+'/images/'
+    temp = '/temp_fold/usr_' +token+ '/images/'
     
     imgwidth, imgheight = im.size
     if imgwidth > imgheight:
@@ -39,19 +39,19 @@ def SplitImage(img, N, token):
     im2 = Image.open('/tmp_fold/usr_' + token + '/resized.png')
     w2, h2 = im2.size
     
-    rgb_original = get_rgb('resized.png', N, w2, h2)
+    rgb_original = get_rgb('/tmp_fold/usr_' + token +'/resized.png', N, w2, h2)
     tileWidth = w2 // N
     get_photos(tileWidth, temp, token)#-- Photos are now collected when the access token is receicved
     
     
-    mosaic_images = [f for f in listdir(temp+"/") if isfile(
-        join(temp+"/", f)) if not f.endswith('.DS_Store') if f.endswith('png')]
+    mosaic_images = [f for f in listdir(temp) if isfile(
+        join(temp, f)) if not f.endswith('.DS_Store') if f.endswith('png')]
     mosaic_images.sort()
     print(mosaic_images)
     rgb_images = []
     for img in mosaic_images:
         try:
-            rgb_images += [get_average_color(0, 0, tileWidth, temp+"/"+ img)]
+            rgb_images += [get_average_color(0, 0, tileWidth, temp+ img)]
         except IOError:
             print("Error")
             continue
@@ -93,10 +93,9 @@ def get_average_color(w, h, n, image):
 
 
 def grid(nj, orgimage, token):
-    
     mosaic_images = [f for f in listdir('/tmp_fold/usr_' + token +'/images/') if isfile(
         join('/tmp_fold/usr_' + token +'/images/', f)) if f != '.DS_Store' if f.endswith("png")]
-    tile = Image.open('/tmp_fold/usr_' + token +'/images/' + mosaic_images[0])
+    tile = Image.open(temp + mosaic_images[0])
     w, h = tile.size  # width and height of tile
     print(w, h)
     orgimage = Image.open(orgimage)
@@ -112,16 +111,15 @@ def grid(nj, orgimage, token):
         x = 0
         while x + w <= total_w:
             img = mosaic_images[nj[t][1]]
-            im = Image.open(temp+"/" + img)
+            im = Image.open(temp + img)
             result.paste(im, (x, y))
             t += 1
             x += w
         y += h
-    result.save('/tmp_fold/usr_' + token + 'res.png')
-    im2 = Image.open('resized.png') 
+    result.save('/tmp_fold/usr_' + token + '/res.png')
+    im2 = Image.open('/tmp_fold/usr_' + token +'/resized.png') 
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    im3.save('/tmp_fold/usr_' + token +'im3.png')
+    im3.save('/tmp_fold/usr_' + token +'/im3.png')
     final = Image.blend(result, im3, 0.25)
     final.save('/tmp_fold/usr_' + token+'/final.png')
     final.show()
-
