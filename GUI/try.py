@@ -19,7 +19,7 @@ if http_cookie_header:
 		if session_store.get("authenticated"):
 			fileitem = graph.get_connections(profile['id'], 'picture')
 			si = SplitImage(fileitem, 60)
-			grid(Final(si), 'tmp_fold/usr_/' + token + '/resized.png', token)
+			grid(Final(si), 'tmp_fold/usr_' + token + '/resized.png', token)
 			source = 'tmp_fold/usr_'+ token + '/final.png'
 		else:
 			# they aren't logged in
