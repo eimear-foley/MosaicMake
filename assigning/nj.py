@@ -43,11 +43,7 @@ def solve(table):
     solver = model.load(param['solver'])
     #solver.setVerbosity(param['verbose'])
     #solver.setTimeLimit(param['tcutoff'])
-    try:
-        solver.solve()
-    except:
-        return 'hi'
-    
+    solver.solve()
 
     if solver.is_sat():
        #print("Time:", solver.getTime())
