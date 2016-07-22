@@ -1,10 +1,9 @@
 from Numberjack import *
-from ColourCost import * 
-from math import sqrt
+from ColourCost import *
 
 
 def flatten(matrix, num):
-
+    return matrix
     matches = []
     for row in range(len(matrix)):
         for item in range(len(matrix[row])):
@@ -37,31 +36,30 @@ def get_model(param):
 
 
 def solve(table):
-
-    param = {'solver': 'SCIP', 'verbose': 1, 'tcutoff': 30,
-             'inputtable': table}
-
+    param = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30,
+             'inputtable':table}
+    
     matrix, cost, model = get_model(param)
-
     solver = model.load(param['solver'])
-    solver.setVerbosity(param['verbose'])
-    solver.setTimeLimit(param['tcutoff'])
-    solver.solve()
+    #solver.setVerbosity(param['verbose'])
+    #solver.setTimeLimit(param['tcutoff'])
+    try:
+        solver.solve()
+    except:
+        return 'hi'
+    
 
     if solver.is_sat():
-        print("Time:", solver.getTime())
+       #print("Time:", solver.getTime())
         return matrix
     elif solver.is_unsat():
-        print('Unsatisfiable')
+        return 'Unsatisfiable'
     else:
-        print('Timed out')
+        return 'Timed out'
 
 
 def Final(tup):
     total_table = DiffTable(tup)
-    N = int(sqrt(len(tup[0])))
-    output = []
-    for x in range(0, N*N, N):
-        inputtable = total_table[x:x+N]
-        output += flatten(solve(inputtable), x)
+    N = int(len(tup[0]))
+    output = flatten(solve(total_table), N)
     return output
