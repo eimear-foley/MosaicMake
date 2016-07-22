@@ -3,21 +3,20 @@ import os
 from os import listdir
 from os.path import isfile, join
 from ColourCost import *
-from new_nj import *
-import timeit
-from api import *
+from nj import *
+from flickr_api import *
 import tempfile
 
 
 def SplitImage(img, N, token):
     try:
-        im = Image.open(img)
+        im = Image.open(img)       
     except FileNotFoundError:
-        print('Error opening main image')
+        return 'Error opening main image'
         exit()
         
-    temp = os.makedirs('temp_fold/usr_'+token+'/images')
-    temp = '/temp_fold/usr_' +token+ '/images/'
+    #temp = os.makedirs('temp_fold/usr_'+token+'/images')
+    temp = 'tmp_fold/usr_' +token+ '/images/'
     
     imgwidth, imgheight = im.size
     if imgwidth > imgheight:
@@ -32,31 +31,26 @@ def SplitImage(img, N, token):
     elif imgwidth == imgheight:
         d = imgheight - N * int(imgheight // N)
         resized = im.crop((0, 0, imgheight - d, imgheight - d))
-
-    resized.save('/tmp_fold/usr_' + token + '/resized.png')
-
-    im2 = Image.open('/tmp_fold/usr_' + token + '/resized.png')
+    resized.save('tmp_fold/usr_'+ token + '/resized.png')
+    im2 = Image.open('tmp_fold/usr_' + token + '/resized.png')
     w2, h2 = im2.size
     
-    rgb_original = get_rgb('/tmp_fold/usr_' + token +'/resized.png', N, w2, h2)
+    rgb_original = get_rgb('tmp_fold/usr_' + token +'/resized.png', N, w2, h2)
     tileWidth = w2 // N
-    get_photos(tileWidth, temp, token)#-- Photos are now collected when the access token is receicved
-    
-    
+    tag = 'cat'
+    getPhotos(token, tag, tileWidth) # Photos are now collected when the access token is receicved
+        
     mosaic_images = [f for f in listdir(temp) if isfile(
         join(temp, f)) if not f.endswith('.DS_Store') if f.endswith('png')]
     mosaic_images.sort()
-    print(mosaic_images)
     rgb_images = []
     for img in mosaic_images:
         try:
-            rgb_images += [get_average_color(0, 0, tileWidth, temp+ img)]
+            rgb_images += [get_average_color(0, 0, tileWidth, temp + img)]
         except IOError:
-            print("Error")
+            return "Error"
             continue
     
-    
-    print(rgb_original, rgb_images)
     return rgb_original, rgb_images
 
 
@@ -92,19 +86,16 @@ def get_average_color(w, h, n, image):
 
 
 def grid(nj, orgimage, token):
-    mosaic_images = [f for f in listdir('/tmp_fold/usr_' + token +'/images/') if isfile(
-        join('/tmp_fold/usr_' + token +'/images/', f)) if f != '.DS_Store' if f.endswith("png")]
-    tile = Image.open(temp + mosaic_images[0])
+    return nj
+    path_to_images = 'tmp_fold/usr_' + token + '/images/'
+    mosaic_images = [f for f in listdir(path_to_images) if isfile(
+        join(path_to_images, f)) if f != '.DS_Store' if f.endswith("png")]
+    tile = Image.open(path_to_images + mosaic_images[0])
     w, h = tile.size  # width and height of tile
-    print(w, h)
     orgimage = Image.open(orgimage)
     total_w, total_h = orgimage.size
-    print(total_w, total_h)
-    x = 0
-    y = 0
-    t = 0
-    result = Image.new('RGB', (total_w, total_h))  # new image
-    print(nj)
+    x,y,t = 0,0,0
+    result = Image.new('RGB',(total_w, total_h))  # new image
     len_nj = len(nj)
     while y + h <= total_h and t < len_nj:
         x = 0
@@ -115,10 +106,11 @@ def grid(nj, orgimage, token):
             t += 1
             x += w
         y += h
-    result.save('/tmp_fold/usr_' + token + '/res.png')
-    im2 = Image.open('/tmp_fold/usr_' + token +'/resized.png') 
+
+    usr_fold = 'tmp_fold/usr_' + token
+    result.save(usr_fold + '/res.png')
+    im2 = Image.open(usr_fold + '/resized.png') 
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    im3.save('/tmp_fold/usr_' + token +'/im3.png')
+    im3.save(usr_fold + '/edge.png')
     final = Image.blend(result, im3, 0.25)
-    final.save('/tmp_fold/usr_' + token+'/final.png')
-    final.show()
+    final.save(usr_fold + '/final.png')
