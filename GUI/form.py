@@ -29,11 +29,20 @@ Released   : 20140101
 		<link href="../fonts.css" rel="stylesheet" type="text/css" media="all" />
 		<link rel="icon" href="../jigsaw.png">
 
+                <!-- tag stuff -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://aehlke.github.io/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+		<link href="http://aehlke.github.io/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+
+
 		<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
 		<script src="../back_to_top.js" type="text/javascript"></script>
-				<script type="text/javascript">
+		<script type="text/javascript">
 
+			var request;
 			var option;
 			var span;
 
@@ -43,20 +52,17 @@ Released   : 20140101
 				span = document.getElementById('span');
 				var select = span.firstChild;
 				select.addEventListener('click', fillSpan, false);
-			}
 				
 			function fillSpan(){
 				option = select.value;
-				if (option === '1' || option === '2') {
-					span.innerHTML = "Your mosaic will be ready quickly but might not be as good as you'd like!"
-
-				} else if (option === '3'){
-					span.innerHTML = "This is the recommended number of photos for quality and speed!"
-				} else if (option === '4' || option === '5'){
-					span.innerHTML = "Your moasic will be high quality but might take a while to load!"
-				} else {
+				if option === '1'{
 					span.innerHTML = ""
+
 				}
+
+
+
+
 			}
 		</script>
 	</head>
@@ -77,6 +83,13 @@ Released   : 20140101
 			</div>
 		</div>
 
+
+               	<script type="text/javascript">
+    $(document).ready(function() {
+        $("#myTags").tagit();
+    });
+		</script>
+
 		<div id="wrapper">
 			<br />
 			<div class="container">
@@ -89,8 +102,16 @@ Released   : 20140101
     					<option value="4">60x60 (3600)</option>
     					<option value="5">70x70 (4900)</option>
 					</select></span>
-					<input type="text">
-				</form>
+					
+
+					<ul id="myTags">
+    	                                <!-- Existing list items will be pre-added to the tags -->
+    	                                <li>Sea</li>
+    	                                <li>Flower</li>
+		                        </ul>
+
+		                        <input type="submit">
+				        </form>
 			</div>
 		</div>
 		<div id="copyright" class="container">
