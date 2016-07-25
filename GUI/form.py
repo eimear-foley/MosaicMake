@@ -32,9 +32,8 @@ Released   : 20140101
 		<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
 		<script src="../back_to_top.js" type="text/javascript"></script>
-		<script type="text/javascript">
+				<script type="text/javascript">
 
-			var request;
 			var option;
 			var span;
 
@@ -44,17 +43,20 @@ Released   : 20140101
 				span = document.getElementById('span');
 				var select = span.firstChild;
 				select.addEventListener('click', fillSpan, false);
+			}
 				
 			function fillSpan(){
 				option = select.value;
-				if option === '1'{
+				if (option === '1' || option === '2') {
+					span.innerHTML = "Your mosaic will be ready quickly but might not be as good as you'd like!"
+
+				} else if (option === '3'){
+					span.innerHTML = "This is the recommended number of photos for quality and speed!"
+				} else if (option === '4' || option === '5'){
+					span.innerHTML = "Your moasic will be high quality but might take a while to load!"
+				} else {
 					span.innerHTML = ""
-
 				}
-
-
-
-
 			}
 		</script>
 	</head>
