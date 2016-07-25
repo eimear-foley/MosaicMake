@@ -14,10 +14,9 @@ def SplitImage(img, N, token):
     except FileNotFoundError:
         return 'Error opening main image'
         exit()
-        
-    #temp = os.makedirs('temp_fold/usr_'+token+'/images')
-    temp = 'tmp_fold/usr_' +token+ '/images/'
-    
+
+    usr_fold = '/var/www/html/tmp_fold/usr_' + token
+
     imgwidth, imgheight = im.size
     if imgwidth > imgheight:
         diff = imgwidth - imgheight
@@ -31,22 +30,22 @@ def SplitImage(img, N, token):
     elif imgwidth == imgheight:
         d = imgheight - N * int(imgheight // N)
         resized = im.crop((0, 0, imgheight - d, imgheight - d))
-    resized.save('tmp_fold/usr_'+ token + '/resized.png')
-    im2 = Image.open('tmp_fold/usr_' + token + '/resized.png')
+    resized.save(usr_fold + '/resized.png')
+    im2 = Image.open(usr_fold + '/resized.png')
     w2, h2 = im2.size
     
-    rgb_original = get_rgb('tmp_fold/usr_' + token +'/resized.png', N, w2, h2)
+    rgb_original = get_rgb(usr_fold +'/resized.png', N, w2, h2)
     tileWidth = w2 // N
-    tag = 'cat'
-    getPhotos(token, tag, tileWidth) # Photos are now collected when the access token is receicved
+    tags = ['blue','green','pink','yellow','red','white']
+    getPhotos(token, tags, tileWidth) # Photos are now collected when the access token is receicved
         
-    mosaic_images = [f for f in listdir(temp) if isfile(
-        join(temp, f)) if not f.endswith('.DS_Store') if f.endswith('png')]
+    mosaic_images = [f for f in listdir(usr_fold + '/images/') if isfile(
+        join(usr_fold + '/images/', f)) if not f.endswith('.DS_Store') if f.endswith('png')]
     mosaic_images.sort()
     rgb_images = []
     for img in mosaic_images:
         try:
-            rgb_images += [get_average_color(0, 0, tileWidth, temp + img)]
+            rgb_images += [get_average_color(0, 0, tileWidth, usr_fold + '/images/' + img)]
         except IOError:
             return "Error"
             continue
@@ -86,8 +85,8 @@ def get_average_color(w, h, n, image):
 
 
 def grid(nj, orgimage, token):
-    return nj
-    path_to_images = 'tmp_fold/usr_' + token + '/images/'
+
+    path_to_images = '/var/www/html/tmp_fold/usr_' + token + '/images/'
     mosaic_images = [f for f in listdir(path_to_images) if isfile(
         join(path_to_images, f)) if f != '.DS_Store' if f.endswith("png")]
     tile = Image.open(path_to_images + mosaic_images[0])
@@ -101,16 +100,19 @@ def grid(nj, orgimage, token):
         x = 0
         while x + w <= total_w:
             img = mosaic_images[nj[t][1]]
-            im = Image.open(temp + img)
+            im = Image.open(path_to_images + img)
             result.paste(im, (x, y))
             t += 1
             x += w
         y += h
 
-    usr_fold = 'tmp_fold/usr_' + token
+    usr_fold = '/var/www/html/tmp_fold/usr_' + token
     result.save(usr_fold + '/res.png')
     im2 = Image.open(usr_fold + '/resized.png') 
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
     im3.save(usr_fold + '/edge.png')
     final = Image.blend(result, im3, 0.25)
     final.save(usr_fold + '/final.png')
+    os.chmod(usr_fold + '/final.png', 0o777)
+
+    return
