@@ -40,5 +40,4 @@ function handle_response1(){
 	}
 }  
 
-
 })();
