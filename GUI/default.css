@@ -233,6 +233,7 @@ ul.contact li a.icon-rss:before
 {
 	float: left;
 	margin-right: 50px;
+	/*background: red;*/
 }
 
 .boxC
@@ -364,22 +365,25 @@ ul.contact li a.icon-rss:before
 
 #banner span
 {
+	padding: .25em; 
+	background: #CC0000; 
+	width: 45%; 
+	margin-right: auto; 
+	margin-left: auto; 
+	border-radius: .5em;
 	display: block;
 	text-transform: uppercase;
 	text-align: center;
 	font-weight: 700;
 	font-size: 2.5em;
 	color: #FFF;
+	opacity: .6;
 }
-#banner span a {
-	background-color: #CC0000;
-	padding: 0.5em;
-	color: #FFF;
-	border-radius: 6px;
+
+#banner span:hover{
+	opacity: 1;
+	transition: 1s;
 }
-#banner span a:hover {
-	background-color: #AF0000;
-	}
 
 /*********************************************************************************/
 /* Page                                                                          */
@@ -482,7 +486,7 @@ ul.contact li a.icon-rss:before
 /* Welcome                                                                       */
 /*********************************************************************************/
 
-#welcome
+#about
 {
 	padding: 5em 0em 5em 0em;
 	border-top: 1px solid rgba(0,0,0,.1);
@@ -526,7 +530,7 @@ ul.style3 h3
 	padding: 1em 0em 5px 0em;
 	text-transform: uppercase;
 	font-size: 1em;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 ul.style3 .first
@@ -611,3 +615,36 @@ ul.style4 .first
 	padding-top: 0px;
 	border-top: none;
 }
+
+/* ----------------------------------------------------------------*/
+/*                          BACK TO TOP                            */
+/*-----------------------------------------------------------------*/
+
+a.back-to-top {
+	opacity: 0.5;
+	width: 70px;
+	height: 70px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 20px;
+	background: black;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 35px;
+	text-transform: uppercase;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+a.back-to-top:hover{
+	opacity: 1;
+	transition: 1s;
+}
+
+/*------------------------------------------------------------------*/
+/*                           IMAGE SLIDE                            */
+/*------------------------------------------------------------------*/
