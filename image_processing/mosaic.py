@@ -8,7 +8,7 @@ from flickr_api import *
 import tempfile
 
 
-def SplitImage(img, N, token):
+def SplitImage(img, N, token, tags):
     try:
         im = Image.open(img)       
     except FileNotFoundError:
@@ -36,7 +36,6 @@ def SplitImage(img, N, token):
     
     rgb_original = get_rgb(usr_fold +'/resized.png', N, w2, h2)
     tileWidth = w2 // N
-    tags = ['blue','green','pink','yellow','red','white']
     getPhotos(token, tags, tileWidth) # Photos are now collected when the access token is receicved
         
     mosaic_images = [f for f in listdir(usr_fold + '/images/') if isfile(
@@ -84,7 +83,7 @@ def get_average_color(w, h, n, image):
     return ((r // count), (g // count), (b // count))
 
 
-def grid(nj, orgimage, token):
+def grid(nj, orgimage, token, opacity):
 
     path_to_images = '/var/www/html/tmp_fold/usr_' + token + '/images/'
     mosaic_images = [f for f in listdir(path_to_images) if isfile(
@@ -111,7 +110,7 @@ def grid(nj, orgimage, token):
     im2 = Image.open(usr_fold + '/resized.png') 
     im3 = im2.filter(ImageFilter.EDGE_ENHANCE_MORE)
     im3.save(usr_fold + '/edge.png')
-    final = Image.blend(result, im3, 0.25)
+    final = Image.blend(result, im3, int(opacity)/10)
     final.save(usr_fold + '/final.png')
     os.chmod(usr_fold + '/final.png', 0o777)
 
