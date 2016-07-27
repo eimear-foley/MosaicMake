@@ -13,9 +13,15 @@ from io import BytesIO
 from PIL import Image
 import tempfile
 from nj import *
+from cgi import FieldStorage, escape
 
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
+
+form_data = FieldStorage()
+photos = escape(form_data.getfirst("photos","").strip())
+tags = form_data.getlist("tags")
+opacity = escape(form_data.getfirst("opacity","").strip())
 
 cookie = SimpleCookie()
 http_cookie_header = environ.get("HTTP_COOKIE")
@@ -41,12 +47,29 @@ if http_cookie_header:
 			response = requests.get(fileitem['url'])
 			img = Image.open(BytesIO(response.content))
 			img.save(usr_fold + '/profile.png')
-			si = SplitImage(usr_fold + '/profile.png', 50, token)
-			source = grid(Final(si), usr_fold + '/resized.png', token)                   
+			si = SplitImage(usr_fold + '/profile.png', int(photos), token, tags)
+			source = grid(Final(si), usr_fold + '/resized.png', token, opacity)                   
 			source = '../tmp_fold/usr_'+ token + '/final.png'
 			print('Content-Type: text/plain')
 			print()
 			print(source)
-#		else:
-#			# they aren't logged in
-#			source = 'Problem'
+		# else:
+			# they aren't logged in
+			# source = 'Problem'
+	elif "up_token" in cookie:
+		token = cookie["up_token"].value
+		source = token
+		usr_fold = '/var/www/html/tmp_fold/usr_' + token
+		try:
+			temp = os.makedirs(usr_fold, mode = 0o777)
+			os.chmod(usr_fold, 0o777)
+			temp = os.makedirs(usr_fold + '/images', mode = 0o777)
+			os.chmod(usr_fold + '/images', 0o777)
+		except FileExistsError:
+			source = "Error"
+		si = SplitImage(usr_fold + '/profile.png', int(photos), token, tags)
+		source = grid(Final(si), usr_fold + '/resized.png', token, opacity)
+		source = '../tmp_fold/usr_'+ token + '/final.png'
+		print('Content-Type: text/plain')
+		print()
+		print(source)
