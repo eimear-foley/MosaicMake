@@ -3,12 +3,16 @@ from PIL import Image
 from io import BytesIO
 import urllib.request
 import os
+
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
 
 
 def getPhotos(token, tags_list, tileWidth):
     path = '/var/www/html/tmp_fold/usr_'+token+'/images/'
+    if not os.path.isdir(path):
+        os.makedirs(path)
+        os.chmod(path, 0o777)
     api_key = u'c33f09d4aa3ad2ccc098139a2da21339'
     api_secret = u'5cabb635113d15a5'
 
@@ -16,7 +20,7 @@ def getPhotos(token, tags_list, tileWidth):
     limit = 0
     count = 0
     for tag in tags_list:
-        limit += 50
+        limit += 25
         for photo in flickr.walk(tag_mode='all', tags=tag):
             count += 1
             if count <= limit:
