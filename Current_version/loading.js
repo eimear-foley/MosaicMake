@@ -57,7 +57,7 @@ console.log("1");
                 
             } else {
                 console.log("response = " + request.responseText.trim());
-                image.innerHTML = "<div style='margin-left: auto; margin-right: auto; height: 40%; width: 40%; padding: 1em;'><p>Sorry we are experiencing problems right now, please try again later!</p><br /><a href='http://143.239.81.2$
+                image.innerHTML = "<div style='margin-left: auto; margin-right: auto; height: 40%; width: 40%; padding: 1em;'><p>Sorry we are experiencing problems right now, please try again later!</p><br /><a href='http://143.239.81.202'>Return to the main page</a></div>"
         }
         }
 }
