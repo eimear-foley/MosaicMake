@@ -2,6 +2,38 @@
 
 from cgitb import enable
 enable()
+from cgi import FieldStorage, escape
+from http.cookies import SimpleCookie
+from os import environ
+import requests
+import os
+from io import BytesIO
+from PIL import Image
+import base64
+os.environ['http_proxy']="http://4c.ucc.ie:80"
+os.environ['https_proxy']="http://4c.ucc.ie:80"
+
+cookie = SimpleCookie()
+http_cookie_header = environ.get("HTTP_COOKIE")
+if http_cookie_header:
+	cookie.load(http_cookie_header)
+	if 'up_token' in cookie:
+		up_token = cookie['up_token'].value
+		form_data = FieldStorage()
+	elif 'token' in cookie:
+		up_token = cookie['token'].value
+		form_data = FieldStorage()
+
+if len(form_data) != 0:
+	photo = form_data.getfirst('url', '').strip()
+	photo = photo.split(',')
+	photo = photo[1]
+	photo = str.encode(photo)
+	with open("/var/www/html/tmp_fold/usr_" + up_token + "/profile.png", "wb") as fh:
+				
+    		fh.write(base64.decodestring(photo))	
+	im = Image.open("/var/www/html/tmp_fold/usr_" + up_token + "/profile.png")
+	im.convert("RGB").save("/var/www/html/tmp_fold/usr_" + up_token + "/profile.png")
 
 print("Content-Type: text/html")
 print()
@@ -44,14 +76,14 @@ Released   : 20140101
 			function fillSpan(value){
 				var span = document.getElementById('span');
 				var option = value;
-				if (option === '20' || option === '40') {
+				if (option === '20' || option === '40' || option === '30') {
 					span.innerHTML = "Your mosaic will be ready quickly but might not be as good as you'd like!"
 
 				} else if (option === '50'){
 					span.innerHTML = "This is the recommended number of photos for quality and speed!"
-				} else if (option === '60' || option === '70'){
+				} else if (option === '60'){
 					span.innerHTML = "Your mosaic will be high quality but might take a while to load!"
-				} else {
+				}else {
 					span.innerHTML = ""
 				}
 			}
@@ -83,10 +115,10 @@ Released   : 20140101
 					<label for="photos">Choose the number of photos in your mosaic:  </label>
 					<select name="photos" onchange='fillSpan(this.value)' required>
 					<option value="20">20x20 (400)</option>
+					<option value="30">30x30 (900)</option>
     					<option value="40">40x40 (1600)</option>
     					<option value="50">50x50 (2500)</option>
     					<option value="60">60x60 (3600)</option>
-    					<option value="70">70x70 (4900)</option>
 					</select><br />
 					<span id='span' style='display: inline-block; padding-top: .5em;'></span>
 					<br><br><label for="myTags" style='padding-bottom: .5em;'>Choose by tag which type of images will make up your mosaic:  </label>
