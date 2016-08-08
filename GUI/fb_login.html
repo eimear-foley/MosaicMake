@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MosaicMake</title>        
-        <meta charset="UTF-8">
+        <title>MosaicMake</title>        <meta charset="UTF-8">
 	<style>
 		body{
 			font-family: 'Source Sans Pro', sans-serif;
@@ -118,7 +117,10 @@ function call_mosaic_make(accesstoken){
 
 //if all's good redirect to loading.py
 function handle_response1(){
+console.log("1");
   if ( request.readyState === 4 ) {
+	console.log("2");
+	console.log("this is a change");
 	console.log("request.status= " + request.status);
         if ( request.status === 200 ) {
 		console.log("3");
@@ -127,7 +129,8 @@ function handle_response1(){
 	      		console.log("ERROR!");
 	      		//something to show user stuff didn't work D:
 	      	} else if (request.responseText.trim() === 'good'){
-	      		window.location.href = "cgi-bin/form.py";
+			console.log("fab");
+	      		window.location.href = "cgi-bin/resize.py";
 
 	     	}
 	    } else {
