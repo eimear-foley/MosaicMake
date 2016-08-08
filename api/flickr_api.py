@@ -3,7 +3,6 @@ from PIL import Image
 from io import BytesIO
 import urllib.request
 import os
-
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
 
