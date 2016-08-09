@@ -5,12 +5,11 @@ import facebook
 import os
 from cgitb import enable
 enable()
-os.environ['http_proxy']="http://4c.ucc.ie:80"
-os.environ['https_proxy']="http://4c.ucc.ie:80"
+os.environ['http_proxy'] = "http://4c.ucc.ie:80"
+os.environ['https_proxy'] = "http://4c.ucc.ie:80"
 
 def some_action(tileWidth, photo, p, i, temp, token):
-    #saves the photo in the folder 'photos' eg photos/0_0.jpeg
-    
+    # Saves the photo in the folder 'photos' eg photos/0_0.png
     response = requests.get(photo['source'])
     img = Image.open(BytesIO(response.content))
     img = img.resize((tileWidth, tileWidth), Image.ANTIALIAS)
