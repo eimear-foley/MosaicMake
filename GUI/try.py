@@ -39,7 +39,7 @@ if http_cookie_header:
                 except FileExistsError:
                         source = "Error"
                 si = SplitImage(usr_fold + '/profile.png', int(photos), token, tags)
-                source =si
+                source = si
                 source = grid(Final(si), usr_fold + '/resized.png', token, opacity)
                 source = '../tmp_fold/usr_'+ token + '/final.png'
                 print('Content-Type: text/plain')
