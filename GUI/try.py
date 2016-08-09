@@ -14,8 +14,8 @@ from PIL import Image
 import tempfile
 from nj import *
 from cgi import FieldStorage, escape
-os.environ['http_proxy']="http://4c.ucc.ie:80"
-os.environ['https_proxy']="http://4c.ucc.ie:80"
+os.environ['http_proxy'] = "http://4c.ucc.ie:80"
+os.environ['https_proxy'] = "http://4c.ucc.ie:80"
 
 
 form_data = FieldStorage()
@@ -32,7 +32,6 @@ if http_cookie_header:
                 source = token
                 usr_fold = '/var/www/html/tmp_fold/usr_' + token
                 try:
-
                         temp = os.makedirs(usr_fold, mode = 0o777)
                         os.chmod(usr_fold, 0o777)
                         temp = os.makedirs(usr_fold + '/images', mode = 0o777)
