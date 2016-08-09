@@ -9,6 +9,7 @@ os.environ['https_proxy']="http://4c.ucc.ie:80"
 
 def getPhotos(token, tags_list, tileWidth):
     path = '/var/www/html/tmp_fold/usr_'+token+'/images/'
+    #path = '/var/www/html/demo/'
     if not os.path.isdir(path):
         os.makedirs(path)
         os.chmod(path, 0o777)
@@ -32,6 +33,7 @@ def getPhotos(token, tags_list, tileWidth):
                 im = Image.open(path + 'test.png')
                 im = im.resize((tileWidth, tileWidth), Image.ANTIALIAS)
                 im.save(path + '%s%s%s' % ('photo',count,'.png'), subsampling = 0, quality = 100)
+                #im.save(path + '%sby%s' + '%s%s%s' % (num, num, 'photo',count,'.png'), subsampling = 0, quality = 100)
             else:
                 break
     return
