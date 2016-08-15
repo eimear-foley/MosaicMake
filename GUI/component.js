@@ -58,17 +58,17 @@ var resizeableImage = function(image_target) {
     event_state.container_top = $container.offset().top;
     event_state.mouse_x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft(); 
     event_state.mouse_y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
-	
-	// This is a fix for mobile safari
-	// For some reason it does not allow a direct copy of the touches property
-	if(typeof e.originalEvent.touches !== 'undefined'){
-		event_state.touches = [];
-		$.each(e.originalEvent.touches, function(i, ob){
-		  event_state.touches[i] = {};
-		  event_state.touches[i].clientX = 0+ob.clientX;
-		  event_state.touches[i].clientY = 0+ob.clientY;
-		});
-	}
+
+        // This is a fix for mobile safari
+        // For some reason it does not allow a direct copy of the touches property
+        if(typeof e.originalEvent.touches !== 'undefined'){
+                event_state.touches = [];
+                $.each(e.originalEvent.touches, function(i, ob){
+                  event_state.touches[i] = {};
+                  event_state.touches[i].clientX = 0+ob.clientX;
+                  event_state.touches[i].clientY = 0+ob.clientY;
+                });
+        }
     event_state.evnt = e;
   };
 
@@ -105,7 +105,7 @@ var resizeableImage = function(image_target) {
         top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
       }
     }
-	
+
     // Optionally maintain aspect ratio
     if(constrain || e.shiftKey){
       height = width / orig_src.width * orig_src.height;
@@ -186,14 +186,15 @@ var resizeableImage = function(image_target) {
         top =  $('.overlay').offset().top - $container.offset().top,
         width = $('.overlay').width(),
         height = $('.overlay').height();
-		
+
     crop_canvas = document.createElement('canvas');
     crop_canvas.width = width;
     crop_canvas.height = height;
     crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
     //window.open(crop_canvas.toDataURL("image/jpg"));
     var crop_button = document.querySelector('button.btn-crop.js-crop');
-    var dataURL = crop_canvas.toDataURL('image/png');   
+    var dataURL = crop_canvas.toDataURL('image/png');
+    console.log(dataURL);   
     var submit_button = document.querySelector("#url-submit");  
     var hidden_input = document.querySelector("#url");  
     submit_button.disabled = false;
