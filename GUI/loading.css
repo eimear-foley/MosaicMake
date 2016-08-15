@@ -1,5 +1,5 @@
 @keyframes example {
-    0% {background-color: #ee4035; }
+        0% {background-color: #ee4035; }
     25%   {background-color: #f37736; transform: rotate(90deg);}
     50%  {background-color: #fdf498; transform: rotate(180deg);}
     75%  {background-color: #7bc043; transform: rotate(270deg);}
@@ -17,45 +17,45 @@
 
 
 .loading_frame{
-	background: white;
-	width: 30%;
-	height: 30%;
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 1em;
-	margin-bottom: 2em;
-	border: solid #fff 2px;
-	border-radius: 1em;
-	text-align: center;
-	padding: 1em;
+        background: white;
+        width: 30%;
+        height: 30%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        border: solid #fff 2px;
+        border-radius: 1em;
+        text-align: center;
+        padding: 1em;
 }
 
 .loading_frame > p{
-	font-size: 18px;
+        font-size: 18px;
 
 }
 
 .loading p {
-	
-	display: inline-block;
-	font-weight: 400;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 18px;
-  	animation-name: letters;
- 	animation-duration: 3s;
-	animation-iteration-count: infinite;
+
+        display: inline-block;
+        font-weight: 400;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 18px;
+        animation-name: letters;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
 }
 
 #d1{
-	animation-delay: 0s;
+        animation-delay: 0s;
 }
 
 #d2{
-	animation-delay: 0.2s;
+        animation-delay: 0.2s;
 
 }
  #d3{
-	animation-delay: 0.4s;
+        animation-delay: 0.4s;
 }
 
 #l{
@@ -101,72 +101,72 @@
 
 
 .jigsaw1 {
-  	width: 6em;
-  	height: 6em;
-  	margin: 50px;
-  	position: relative;
+        width: 6em;
+        height: 6em;
+        margin: 50px;
+        position: relative;
     -webkit-border-radius: .5em;
     -moz-border-radius: .5em;
-  	border-radius: .5em;
-  	cursor: pointer;
-  	margin-right: auto;
-  	margin-left: auto;
+        border-radius: .5em;
+        cursor: pointer;
+        margin-right: auto;
+        margin-left: auto;
 }
 
 
 .jigsaw1,
 .jigsaw1 .t, .jigsaw1 .r {
- 	background-color: #0284cf; 
- 	animation-name: example;
-	animation-duration: 2.5s;
-	animation-iteration-count: infinite;
+        background-color: #0284cf; 
+        animation-name: example;
+        animation-duration: 2.5s;
+        animation-iteration-count: infinite;
 
 }
 
 
 
 .jigsaw1 .t {
- 	width: 2em;
-  	height: 2em;
-  	position: absolute;
-  	top: -1.5em;
-  	left: 2em;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: -1.5em;
+        left: 2em;
     -webkit-border-radius: 4em;
     -moz-border-radius: 4em;
-  	border-radius: 4em;
+        border-radius: 4em;
 }
 
 .jigsaw1 .r{
- 	width: 2em;
-  	height: 2em;
-  	position: absolute;
-  	top: 2em;
-  	left: 5.5em;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: 2em;
+        left: 5.5em;
     -webkit-border-radius: 4em;
     -moz-border-radius: 4em;
-  	border-radius: 4em;
+        border-radius: 4em;
 }
 
 .jigsaw1 .b { 
- 	width: 1.8em;
-  	height: 1.8em;
-  	position: absolute;
-  	top: 4.5em;
-  	left: 2.2em;
+        width: 1.8em;
+        height: 1.8em;
+        position: absolute;
+        top: 4.5em;
+        left: 2.2em;
     -webkit-border-radius: 4em;
     -moz-border-radius: 4em;
-  	border-radius: 4em;
-  	background-color: #fff;
+        border-radius: 4em;
+        background-color: #fff;
 }
 
 .jigsaw1 .l { 
- 	width: 1.8em;
- 	height: 1.8em;
- 	position: absolute;
- 	top: 2.2em;
-  	left: -.4em;
-  	-webkit-border-radius: 4em;
-  	-moz-border-radius: 4em;
-  	border-radius: 4em;
- 	background-color: #fff;
+        width: 1.8em;
+        height: 1.8em;
+        position: absolute;
+        top: 2.2em;
+        left: -.4em;
+        -webkit-border-radius: 4em;
+        -moz-border-radius: 4em;
+        border-radius: 4em;
+        background-color: #fff;
 }
