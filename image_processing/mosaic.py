@@ -22,8 +22,9 @@ def SplitImage(img, N, token, tags):
 
     rgb_original = get_rgb(usr_fold +'/resized.png', N, w2, h2)
     tileWidth = w2 // N
-    getPhotos(token, tags, tileWidth) # Photos are now collected when the access token is receicved
-        
+    message = getPhotos(token, tags, tileWidth) # Photos are now collected when the access token is receicved
+    if message == 'Go away':
+        return 'Tags no good'    
     mosaic_images = [f for f in listdir(usr_fold + '/images/') if isfile(
         join(usr_fold + '/images/', f)) if not f.endswith('.DS_Store') if f.endswith('png')]
     mosaic_images.sort()
@@ -42,9 +43,9 @@ def get_rgb(image, N, w, h):
     div = w // N
     rgbimg = []
     htile = 0
-    while htile < h:
+    while htile < h :
         wtile = 0
-        while wtile < w:
+        while wtile < w :
             r, g, b = get_average_color(wtile, htile, div, image)
             rgbimg += [(r, g, b)]
             wtile += div
