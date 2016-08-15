@@ -20,7 +20,12 @@ if len(form_data) != 0:
         user_tags = form_data.getlist('tags')
         img_param = escape(form_data.getfirst('photos','').strip())
         opacity = escape(form_data.getfirst('opacity','').strip())
-
+        output = opacity
+        if int(opacity) < 0 or int(opacity) > 10:
+                print("Location:http://143.239.81.202/cgi-bin/form.py")
+        img_params = [20, 30, 40, 50, 60]
+        if int(img_param) not in img_params:
+                print("Location:http://143.239.81.202/cgi-bin/form.py")
 print("Content-Type: text/html")
 print()
 
@@ -78,4 +83,4 @@ print("""<!DOCTYPE html>
                         </div>
                 </body>
         </html>
-""")
+""" )
