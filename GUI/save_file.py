@@ -10,6 +10,7 @@ from shelve import open
 from PIL import Image
 from http.cookies import SimpleCookie
 
+
 sid = sha256(repr(time()).encode()).hexdigest()
 
 cookie = SimpleCookie()
@@ -88,8 +89,14 @@ Released   : 20140101
                 </div>
         </div>
 </div>
+
+
 <div id='wrapper' style='padding: 1em; margin-left: auto; margin-right: auto;'>
         <div id='upload' class="container">
+
+<div style="display: block; height: 100px;">
+<p><a href="../cam.html">Upload Photo From Webcam</a></p>
+</div>
                 <form enctype="multipart/form-data" action="save_file.py" method="post">
                         <p>Upload a photo:</p><br />
                         <input id="file" type="file" name="filename" />
@@ -106,4 +113,3 @@ Released   : 20140101
 </div>
 </body>
 </html>""" % (output))
-
