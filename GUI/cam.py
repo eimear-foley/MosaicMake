@@ -1,34 +1,38 @@
-import pygame
-import pygame.camera
-from pygame.locals import *
+#!/usr/bin/env python3
 
-DEVICE = '/dev/video0'
-SIZE = (640, 480)
-FILENAME = 'profile.png'
-
-def camstream():
-    pygame.init()
-    pygame.camera.init()
-    display = pygame.display.set_mode(SIZE, 0)
-    camera = pygame.camera.Camera(DEVICE, SIZE)
-    camera.start()
-    screen = pygame.surface.Surface(SIZE, 0, display)
-    capture = True
-    while capture:
-        screen = camera.get_image(screen)
-        display.blit(screen, (0,0))
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                capture = False
-            #any key pressed "KEYDOWN"
-            elif event.type == KEYDOWN:
-                pygame.image.save(screen, "/home/gabrielle/mosaic/"+FILENAME)
-
-    camera.stop()
-    pygame.quit()
-    return
+from cgitb import enable
+enable()
+from cgi import FieldStorage, escape
+from http.cookies import SimpleCookie
+from os import environ
+import os
+from PIL import Image
+import base64
 
 
-if __name__ == '__main__':
-    camstream()
+#os.environ['http_proxy']="http://4c.ucc.ie:80"
+#os.environ['https_proxy']="http://4c.ucc.ie:80"
+
+result = "problem"
+
+cookie = SimpleCookie()
+http_cookie_header = environ.get("HTTP_COOKIE")
+if http_cookie_header:
+        cookie.load(http_cookie_header)
+        if 'token' in cookie:
+                token = cookie['token'].value
+                path = "/var/www/html/tmp_fold/usr_" + token + "/profile.png"
+                form_data = FieldStorage()
+                if len(form_data) != 0:
+                        image = escape(form_data.getfirst("image", "").strip())
+                        image = image.split(',')
+                        image = image[1]
+                        image = str.encode(photo)
+                        with open( path , "wb") as fh:
+                                fh.write(base64.decodestring(image))
+                        im = Image.open(path)
+                        im.convert("RGB").save(path)
+                        result = "good"
+print("Content-Type: text/plain")
+print()
+print(result)
