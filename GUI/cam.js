@@ -16,7 +16,16 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
         video.src = window.URL.createObjectURL(stream);
         video.play();
-    });
+        console.log("haha");
+    }, function(){
+         console.log("errback");
+         var error_msg = document.querySelector("#error_msg");
+         var snap = document.querySelector("#snap");
+         var save = document.querySelector("#save");
+         error_msg.innerHTML = "Cannot connect to webcam. Please enable webcam or <a href='index.html'>go back to homepage</a>"
+         save.disabled = "True";
+         snap.style.visibility = "hidden";
+        });
 }
 
 /* Legacy code below: getUserMedia 
@@ -24,17 +33,41 @@ else if(navigator.getUserMedia) { // Standard
     navigator.getUserMedia({ video: true }, function(stream) {
         video.src = stream;
         video.play();
-    }, errBack);
+    }, function(){
+         console.log("errback");
+         var error_msg = document.querySelector("#error_msg");
+         var snap = document.querySelector("#snap");
+         var save = document.querySelector("#save");
+         error_msg.innerHTML = "Cannot connect to webcam. Please enable webcam or <a href='index.html'>go back to homepage</a>"
+         save.disabled = "True";
+         snap.style.visibility = "hidden";
+        } );
 } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
     navigator.webkitGetUserMedia({ video: true }, function(stream){
         video.src = window.webkitURL.createObjectURL(stream);
         video.play();
-    }, errBack);
+    }, function(){
+         console.log("errback");
+         var error_msg = document.querySelector("#error_msg");
+         var snap = document.querySelector("#snap");
+         var save = document.querySelector("#save");
+         error_msg.innerHTML = "Cannot connect to webcam. Please enable webcam or <a href='index.html'>go back to homepage</a>"
+         save.disabled = "True";
+         snap.style.visibility = "hidden";
+        });
 } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
     navigator.mozGetUserMedia({ video: true }, function(stream){
         video.src = window.URL.createObjectURL(stream);
         video.play();
-    }, errBack);
+    }, function(){
+         console.log("errback");
+         var error_msg = document.querySelector("#error_msg");
+         var snap = document.querySelector("#snap");
+         var save = document.querySelector("#save");
+         error_msg.innerHTML = "Cannot connect to webcam. Please enable webcam or <a href='index.html'>go back to homepage</a>"
+         save.disabled = "True";
+         snap.style.visibility = "hidden";
+        });
 }
 */
 // Elements for taking the snapshot
@@ -85,6 +118,13 @@ if (request.readyState === 4){
                         }
         }
 }*/
+
+
+function errBack(){
+    console.log("errback");
+    error_msg = document.querySelector("#error_msg");
+    error_msg.innerHTML = "Cannot connect to webcam. Please enable webcam or <a href='index.html'>go back to homepage</a>"
+}
 
 
 })();
