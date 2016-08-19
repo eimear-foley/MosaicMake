@@ -25,7 +25,6 @@ form_data = FieldStorage()
 if len(form_data) != 0:
         # Get filename here.
         fileitem = form_data['filename']
-
         # Test if the file was uploaded
         if fileitem.filename:
                 # strip leading path from file name to avoid 
@@ -42,11 +41,9 @@ if len(form_data) != 0:
                 img.save(mypath + '/profile.png')
                 os.chmod(mypath + '/profile.png',0o777)
                 status = True
-
 else:
-        output = 'Please upload a file'
+        # output = 'Please upload a file'
         status = False
-
 if status:
         print("Location:http://143.239.81.202/cgi-bin/resize.py")
 print('Content-Type: text/html')
