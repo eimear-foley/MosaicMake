@@ -21,10 +21,10 @@ if http_cookie_header:
                 up_token = cookie['up_token'].value
                 form_data = FieldStorage()
         elif 'token' in cookie:
-                up_token = cookie['token'].value
-                form_data = FieldStorage()
-
-if len(form_data) != 0:
+                up_token = cookie['token'].value                                                                                                                           
+                form_data = FieldStorage()                                                                                                                                 
+                                                                                                                                                                           
+if len(form_data) != 0:                                                                                                                                                    
         photo = form_data.getfirst('url', '').strip()
         photo = photo.split(',')
         photo = photo[1]
@@ -37,6 +37,7 @@ if len(form_data) != 0:
 
 print("Content-Type: text/html")
 print()
+
 print("""
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
@@ -93,7 +94,7 @@ Released   : 20140101
                                         span.innerHTML = "This is the recommended number of photos for quality and speed!"
                                 } else if (option === '60'){
                                         span.innerHTML = "Your mosaic will be high quality but might take a while to load!"
-                                }else {
+                                } else {
                                         span.innerHTML = ""
                                 }
                         }
@@ -149,6 +150,7 @@ Released   : 20140101
                                         <br><br />
                                         <input type="submit" value="MosaicMake"><br><br>
                                 </form>
+
                         </div>
                 </div>
                 <div id="copyright" class="container">
