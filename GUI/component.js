@@ -194,16 +194,20 @@ var resizeableImage = function(image_target) {
     //window.open(crop_canvas.toDataURL("image/jpg"));
     var crop_button = document.querySelector('button.btn-crop.js-crop');
     var dataURL = crop_canvas.toDataURL('image/png');
-    console.log(dataURL);   
+    console.log(dataURL);
+    var form = document.querySelector(".next");   
     var submit_button = document.querySelector("#url-submit");  
     var hidden_input = document.querySelector("#url");  
     submit_button.disabled = false;
     hidden_input.value = dataURL;
-    
-    //});
+    form.style.visibility = 'visible';
+   //});
     
     
   }
+
+    
+  
 
   init();
 };
