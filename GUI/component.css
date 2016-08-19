@@ -118,7 +118,7 @@
         bottom: 5px;
         padding: 6px 10px;
         z-index: 999;
-        background-color: rgb(222,60,80);
+        background-color: #cc0000;
         border: none;
         border-radius: 5px;
         color: #FFF;
@@ -130,11 +130,22 @@
 }
 
 .next{z-index:999;
-  border:10px;
-  color:blue;
-  height:100px;
   width:100px;
-  position: fixed;
-  bottom:0;
-  
+  height: 100px;
+  position: absolute;
+  right: 5.6%;
+  bottom: 0;
+}
+
+#url-submit{
+  font-size: 20px;
+  background: #cc0000;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  padding: 6px 10px;
+  position: relative;
+  width: 150px;
+  vertical-align: bottom;
+  height: 41px;
 }
