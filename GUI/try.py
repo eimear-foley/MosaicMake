@@ -17,7 +17,6 @@ from nj import *
 from cgi import FieldStorage, escape
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
-
 check = "true"
 mosaicnum = [20,30,40,50,60]
 result = ["true","false"]
@@ -51,20 +50,18 @@ if http_cookie_header:
                         except FileExistsError:
                                 source = "Error"
                         si = SplitImage(usr_fold + '/profile.png', int(photos), token, tags)
-                        source = si
                         if si == 'Tags no good':
                                 source = 'There was a problem with the tags chosen. Please try again with different tags.'
                         else:
-                                source = grid(Final(si), usr_fold + '/resized.png', token, opacity)
+                                grid(Final(si), usr_fold + '/resized.png', token, opacity)
                                 source = '../tmp_fold/usr_'+ token + '/final.png'
                         print('Content-Type: text/plain')
                         print()
                         print(source)
-                elif premade == "true" and check == "true":
+                elif premade == "true" and check=="true":
                         path = '%sby%s' %(photos, photos)
                         si = SplitImage2(usr_fold + '/profile.png', int(photos), token)
-                        source = si
-                        source = grid2(Final(si), usr_fold + '/resized.png', token, opacity, int(photos))
+                        grid2(Final(si), usr_fold + '/resized.png', token, opacity, int(photos))
                         source = '../tmp_fold/usr_'+ token + '/final.png'
                         print('Content-Type: text/plain')
                         print()
