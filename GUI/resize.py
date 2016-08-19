@@ -65,19 +65,43 @@ print("""
                 <link rel="stylesheet" type="text/css" href="/normalize.css" />
                 <link rel="stylesheet" type="text/css" href="/demo.css" />
                 <link rel="stylesheet" type="text/css" href="/component.css" />
+                <link href="../default.css" rel="stylesheet" type="text/css" media="all" >
+                <link href="../fonts.css" rel="stylesheet" type="text/css" media="all" >
+                <link href="../loading.css" rel="stylesheet" type="text/css" media="all">
+                <link rel="icon" href="../jigsaw.png">
+                <title>MosaicMake</title>
+                <script src="../back_to_top.js"></script>
+                <script src="../jquery.js"></script>
+                <script src="../component.js"></script>
                 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
                 <!--[if IE]>
-                <title>MosaicMake</title>
-                <link href="../jigsaw.png" rel="icon" />
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
                 <![endif]-->
                 <style>
                         body{
                                 font-family: 'Source Sans Pro', sans-serif;
                         }
+                        #wrapper{
+                                padding: 1em;
+                        }
                 </style>
         </head>
         <body>
+        <a href="#" class="back-to-top"><br>Back to Top</a>
+        <div id="header-wrapper" style="background: white; border-bottom: #cc0000;">
+                <div id="header" class="container" style="border-bottom: #cc0000;">
+                        <div id="logo">
+                                <h1 style=" color: white;"> <img src="../jigsaw.png" " alt="jigsaw piece" height="25" width="25"> MosaicMake</h1>
+                        </div>
+                        <div id="menu">
+                                <ul>
+                                        <li class="active"><a href="http://143.239.81.202" accesskey="1" title="">Home</a></li>
+
+                                </ul>
+                        </div>
+                </div>
+        </div>
+        <div id="wrapper">
                 <div class="container">
                         <!-- Top Navigation -->
                         <div style="margin-right: auto; margin-left: auto;"><p style="text-align: center; font-size: 25px;">Please crop your photo to make your mosaic!</p></div>
@@ -88,20 +112,25 @@ print("""
                                                 </div>
                                         </div>
                                         <img class="resize-image" src="../tmp_fold/usr_%s/profile.png" alt="image for resizing">
-                                        <button style="height: 50px; width: 150px; font-size: 20px;" class="btn-crop js-crop">Crop</button>
-                                        <form class="next" style="" method="post" action="form.py">
-                                                <input type="hidden" name="url" value="" id="url">
-                                                <input type="submit" style="" id="url-submit" disabled>
-                                        </form>
-
+                                        <div id='buttons' style="float:right;">
+                                                <form class="next" method="post" style="visibility: hidden;" action="form.py">
+                                                        <input type="hidden" name="url" value="" id="url">
+                                                        <input type="submit" id="url-submit" value="Next page" disabled>
+                                                </form>
+                                                <button style="height: 50px; width: 150px; font-size: 20px;" class="btn-crop js-crop">Crop</button>
+                                        </div>
                                 </div>
                         </div>
                 </div>
-
-                <script src="../jquery.js"></script>
-                <script src="../component.js"></script>
-
-
+        </div>
+        <div id="copyright" class="container">
+                <p>&copy; MosaicMake. All rights reserved. | released under the <a href="http://templated.co/license">Creative Commons Attribution</a>  license | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+        </div>
+        <link rel="icon" href="../jigsaw.png">
+        <title>MosaicMake</title>
+        <script src="../back_to_top.js"></script>
+        <script src="../jquery.js"></script>   
+        <script src="../component.js"></script>
         </body>
 </html>
-"""%(source))
+""" % (source))
