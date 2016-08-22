@@ -46,7 +46,6 @@ def solve(table):
     solver.solve()
 
     if solver.is_sat():
-       #print("Time:", solver.getTime())
         return matrix
     elif solver.is_unsat():
         return 'Unsatisfiable'
