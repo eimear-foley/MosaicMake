@@ -2,6 +2,7 @@
 
 from cgitb import enable
 enable()
+
 from http.cookies import SimpleCookie
 from os import environ
 from shelve import open
@@ -15,8 +16,10 @@ from PIL import Image
 import tempfile
 from nj import *
 from cgi import FieldStorage, escape
+
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
+
 check = "true"
 mosaicnum = [20,30,40,50,60]
 result = ["true","false"]
