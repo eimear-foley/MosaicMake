@@ -10,6 +10,7 @@ import os
 from io import BytesIO
 from PIL import Image
 import base64
+
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
 
@@ -21,16 +22,16 @@ if http_cookie_header:
                 up_token = cookie['up_token'].value
                 form_data = FieldStorage()
         elif 'token' in cookie:
-                up_token = cookie['token'].value                                                                                                                           
-                form_data = FieldStorage()                                                                                                                                 
-                                                                                                                                                                           
-if len(form_data) != 0:                                                                                                                                                    
+                up_token = cookie['token'].value
+                form_data = FieldStorage()
+
+if len(form_data) != 0:
         photo = form_data.getfirst('url', '').strip()
+        old_photo = photo
         photo = photo.split(',')
         photo = photo[1]
         photo = str.encode(photo)
         with open("/var/www/html/tmp_fold/usr_" + up_token + "/profile.png", "wb") as fh:
-
                 fh.write(base64.decodestring(photo))
         im = Image.open("/var/www/html/tmp_fold/usr_" + up_token + "/profile.png")
         im.convert("RGB").save("/var/www/html/tmp_fold/usr_" + up_token + "/profile.png")
@@ -40,15 +41,6 @@ print()
 
 print("""
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
-Name       : RedMarket 
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20140101
--->
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <style>
@@ -77,6 +69,7 @@ Released   : 20140101
                         function showTags(){
                                 var tags = document.getElementById('myTags'); 
                                 tags.style.visibility = 'visible';
+                                
                         }
 
                         function hideTags(){
@@ -158,4 +151,4 @@ Released   : 20140101
                 </div>
         </body>
 </html>
-""")
+"""  )
