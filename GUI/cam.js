@@ -102,14 +102,8 @@ request.send(param);
 
 
 /*function handle_response(){
-console.log("handle_response");
-console.log(request.readyState);
 if (request.readyState === 4){
-        console.log("ready state 4");
-        console.log("request.status =" + request.status );
         if (request.status === 200){
-                console.log("200");
-                console.log(request.responseText.trim());
                 if (request.responseText.trim() === "good"){
                         window.location = "cgi-bin/resize.py";
                         }
@@ -121,7 +115,6 @@ if (request.readyState === 4){
 
 
 function errBack(){
-    console.log("errback");
     error_msg = document.querySelector("#error_msg");
     error_msg.innerHTML = "Cannot connect to webcam. Please enable webcam or <a href='index.html'>go back to homepage</a>"
 }
