@@ -45,7 +45,7 @@ a:hover, a:focus {
         background: url(gridme.png) repeat center center;
         padding: 4em;
         height: 750px;
-        border: 3px solid #49708A;
+        border: 1px solid black;
         max-width: 1000px;
         overflow: hidden;
         margin: 0 auto;
