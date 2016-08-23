@@ -3,6 +3,7 @@ from PIL import Image
 from io import BytesIO
 import urllib.request
 import os
+
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
 
@@ -10,7 +11,7 @@ os.environ['https_proxy']="http://4c.ucc.ie:80"
 def getPhotos(token, tags_list, tileWidth):
     if len(tags_list) == 0:
         return 'Go away'
-    path = '/var/www/html/tmp_fold/usr_' + token + '/images/'
+    path = '/var/www/html/tmp_fold/usr_'+token+'/images/'
     if not os.path.isdir(path):
         os.makedirs(path)
         os.chmod(path, 0o777)
@@ -22,16 +23,16 @@ def getPhotos(token, tags_list, tileWidth):
     count = 0
     failures = 0
     for tag in tags_list:
-        worked = False
-        limit += 25 
-        try:
-            for photo in flickr.walk(tag_mode='all', tags=tag):
-                worked = True
-                count += 1
-                if photo == "None":
-                    failures += 1
-                    break 
-                if count <= limit:
+        worked = False                                                                                                                                               
+        limit += 25                                                                                                                                                  
+        try:                                                                                                                                                         
+            for photo in flickr.walk(tag_mode='all', tags=tag):                                                                                                      
+                worked = True                                                                                                                                        
+                count += 1                                                                                                                                           
+                if photo == "None":                                                                                                                                  
+                    failures += 1                                                                                                                                    
+                    break                                                                                                                                            
+                if count <= limit:                                                                                                                                   
                     photo_id = photo.get('id')
                     farm_id = photo.get('farm')
                     server = photo.get('server')
@@ -50,4 +51,4 @@ def getPhotos(token, tags_list, tileWidth):
             continue
     if failures == len(tags_list):
         return 'Go away'
-    return 'gr8' 
+    return 'gr8'
