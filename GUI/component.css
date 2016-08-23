@@ -22,7 +22,7 @@
     display: block;
     width: 10px;
     height: 10px;
-    background: rgba(222,60,80,.9);
+    background: #cc0000;
     z-index: 999;
 }
 
@@ -60,7 +60,7 @@
         z-index: 999;
         width: 600px;
         height:600px;
-    border: solid 2px green;
+        border: solid 2px #cc0000;
         box-sizing: content-box;
         pointer-events: none;
 }
@@ -72,8 +72,8 @@
         display: block;
         width: 204px;
         height: 40px;
-    border-left: dashed 2px rgba(222,60,80,.9);
-        border-right: dashed 2px rgba(222,60,80,.9);
+        /*border-left: dashed 2px rgba(222,60,80,.9);
+        border-right: dashed 2px rgba(222,60,80,.9);*/
 }
 
 .overlay:before {
@@ -95,8 +95,8 @@
         display: block;
         width: 40px;
         height: 204px;
-    border-top: dashed 2px rgba(222,60,80,.9);
-        border-bottom: dashed 2px rgba(222,60,80,.9);
+        /*border-top: dashed 2px rgba(222,60,80,.9);
+        border-bottom: dashed 2px rgba(222,60,80,.9);*/
 }
 
 .overlay-inner:before {
