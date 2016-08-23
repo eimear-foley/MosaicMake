@@ -7,13 +7,15 @@ from http.cookies import SimpleCookie
 from os import environ
 from shelve import open
 import os
+
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
+
 bigimg = ""
 littleimgs = []
 result = ""
 message = ""
-title=""
+title = ""
 
 form_data = FieldStorage()
 if len(form_data) != 0:
