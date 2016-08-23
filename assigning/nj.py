@@ -36,13 +36,11 @@ def get_model(param):
 
 
 def solve(table):
-    param = {'solver': 'SCIP', 'verbose': 0, 'tcutoff': 30,
-             'inputtable':table}
+    param = {'solver': 'SCIP', 'verbose': 0, 'inputtable':table}
     
     matrix, cost, model = get_model(param)
     solver = model.load(param['solver'])
-    #solver.setVerbosity(param['verbose'])
-    #solver.setTimeLimit(param['tcutoff'])
+    solver.setVerbosity(param['verbose'])
     solver.solve()
 
     if solver.is_sat():
