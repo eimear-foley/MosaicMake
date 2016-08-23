@@ -10,8 +10,10 @@ import facebook
 import requests
 from io import BytesIO
 import base64
+
 os.environ['http_proxy']="http://4c.ucc.ie:80"
 os.environ['https_proxy']="http://4c.ucc.ie:80"
+
 source = ""
 cookie = SimpleCookie()
 http_cookie_header = environ.get("HTTP_COOKIE")
@@ -46,8 +48,6 @@ if http_cookie_header:
                         fh.write(base64.decodestring(image))
                 im = Image.open(path)
                 im.convert("RGB").save(path)
- 
-
 
 print("Content-Type: text/html")
 print()
@@ -58,8 +58,6 @@ print("""
                 <meta charset="UTF-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <meta name="description" content="Learn how to resize images using JavaScript and the HTML5 Canvas element using controls, commonly seen in photo editing applications." />
-                <meta name="keywords" content="canvas, javascript, HTML5, resizing, images" />
                 <meta name="author" content="Codrops" />
                 <link rel="shortcut icon" href="../favicon.ico">
                 <link rel="stylesheet" type="text/css" href="/normalize.css" />
@@ -126,11 +124,8 @@ print("""
         <div id="copyright" class="container">
                 <p>&copy; MosaicMake. All rights reserved. | released under the <a href="http://templated.co/license">Creative Commons Attribution</a>  license | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
         </div>
-        <link rel="icon" href="../jigsaw.png">
-        <title>MosaicMake</title>
         <script src="../back_to_top.js"></script>
         <script src="../jquery.js"></script>   
         <script src="../component.js"></script>
         </body>
-</html>
-""" % (source))
+</html>""" % (source))
