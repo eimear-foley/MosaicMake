@@ -194,7 +194,6 @@ var resizeableImage = function(image_target) {
     //window.open(crop_canvas.toDataURL("image/jpg"));
     var crop_button = document.querySelector('button.btn-crop.js-crop');
     var dataURL = crop_canvas.toDataURL('image/png');
-    console.log(dataURL);
     var form = document.querySelector(".next");   
     var submit_button = document.querySelector("#url-submit");  
     var hidden_input = document.querySelector("#url");  
@@ -214,3 +213,5 @@ var resizeableImage = function(image_target) {
 
 // Kick everything off with the target image
 resizeableImage($('.resize-image'));
+//window.addEventListener('DOMContentLoaded', resizeableImage(document.querySelector('.resize_image')), false);
+
