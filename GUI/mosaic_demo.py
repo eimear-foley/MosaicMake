@@ -20,18 +20,23 @@ def SplitImage2(img, N, token):
         dict = fifty
     elif N == 60:
         dict = sixty
-    path = '/var/www/html/demo/%sby%s/' %(N, N)
-    try:
-        im = Image.open(img)       
-    except FileNotFoundError:
-        return 'Error opening main image'
-        exit()
-    usr_fold = '/var/www/html/tmp_fold/usr_' + token
-
-    im.save(usr_fold + '/resized.png')
-    im2 = Image.open(usr_fold + '/resized.png')
-    w2, h2 = im2.size
-
+    path = '/var/www/html/demo/%sby%s/' %(N, N)                                                                                                                                                            
+    try:                                                                                                                                                                                                   
+        im = Image.open(img)                                                                                                                                                                               
+    except FileNotFoundError:                                                                                                                                                                              
+        return 'Error opening main image'                                                                                                                                                                  
+        exit()                                                                                                                                                                                             
+    usr_fold = '/var/www/html/tmp_fold/usr_' + token                                                                                                                                                       
+                                                                                                                                                                                                           
+    im.save(usr_fold + '/resized.png')                                                                                                                                                                     
+    im2 = Image.open(usr_fold + '/resized.png')                                                                                                                                                            
+    w2, h2 = im2.size                                                                                                                                                                                      
+                                                                                                                                                                                                           
+    if w2 != 600 or  h2 != 600:                                                                                                                                                                            
+        im2 = im2.resize((600,600))
+        im2.save(usr_fold + '/resized.png')
+        im2 = Image.open(usr_fold + '/resized.png')
+        w2, h2 = im2.size
     rgb_original = get_rgb(usr_fold +'/resized.png', N, w2, h2)
     tileWidth = w2 // N
     
