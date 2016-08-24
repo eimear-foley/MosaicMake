@@ -21,8 +21,8 @@ def SplitImage(img, N, token, tags):
     w2, h2 = im2.size
     if w2 != 600 or  h2 != 600:
         im2 = im2.resize((600,600))
-        im2.save(usr_fold + '/resize.png')
-        im2 = Image.open(usr_fold + '/resize.png')
+        im2.save(usr_fold + '/resized.png')
+        im2 = Image.open(usr_fold + '/resized.png')
         w2, h2 = im2.size            
     rgb_original = get_rgb(usr_fold +'/resized.png', N, w2, h2)
     tileWidth = w2 // N
@@ -47,25 +47,24 @@ def get_rgb(image, N, w, h):
     div = w // N
     rgbimg = []
     htile = 0
-    while htile < h :
+    while htile < h:
         wtile = 0
-        while wtile < w :
+        while wtile < w:
             r, g, b = get_average_color(wtile, htile, div, image)
             rgbimg += [(r, g, b)]
             wtile += div
         htile += div
     return rgbimg
 
-
 def get_average_color(w, h, n, image):
     """ Returns a 3-tuple containing the RGB value of the average color of the
     given square bounded area of length = n whose origin (top left corner) 
-    is (x, y) in the given image"""
+    is (x, y) in the given image
+    """
     image = Image.open(image).load()
     r, g, b = 0, 0, 0
     count = 0
     for s in range(w, w + n):
-    
         for t in range(h, h + n):   
             pixlr, pixlg, pixlb = image[s, t]
             r += pixlr
@@ -74,7 +73,6 @@ def get_average_color(w, h, n, image):
             count += 1
     
     return ((r // count), (g // count), (b // count))
-
 
 def grid(nj, orgimage, token, opacity):
 
@@ -109,5 +107,5 @@ def grid(nj, orgimage, token, opacity):
     
     final.save(usr_fold + '/final.png')
     os.chmod(usr_fold + '/final.png', 0o777)
-
+    
     return
