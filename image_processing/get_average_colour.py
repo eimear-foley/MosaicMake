@@ -16,6 +16,7 @@ def get_average_color(x,y, n, image):
             count += 1
     return ((r//count), (g//count), (b//count))
  
-image = Image.open('testimg.jpg').load()
-r, g, b = get_average_color(0,400,50,image)
-print(r,g,b)
+if __name__ == "__main__":
+    image = Image.open('testimg.jpg').load()
+    r, g, b = get_average_color(0,400,50,image)
+    print(r,g,b)
