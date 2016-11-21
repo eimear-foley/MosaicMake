@@ -20,4 +20,5 @@ def average_rgb(image):
     average_blue //= maxcolors
     return (average_red, average_green, average_blue)
 
-print(average_rgb('/Users/alessianardotto/forest.jpg'))
+if __name__ == "__main__":
+    print(average_rgb('/Users/alessianardotto/forest.jpg'))
