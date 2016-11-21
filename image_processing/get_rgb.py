@@ -34,7 +34,7 @@ def get_average_color(x, y, n, image):
             count += 1
     return ((r // count), (g // count), (b // count))
 
-
-# r, g, b = get_average_color(528,528,528,'resized.jpeg')
-# print(r,g,b)
-# print(get_rgb('resized.jpeg',16))
+if __name__ == "__main__":
+    r, g, b = get_average_color(528,528,528,'resized.jpeg')
+    print(r,g,b)
+    print(get_rgb('resized.jpeg',16))
