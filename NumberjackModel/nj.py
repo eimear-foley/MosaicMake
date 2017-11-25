@@ -28,8 +28,6 @@ def get_model(param):
         Minimize(cost),
         # only one chosen value per row
         [Sum(row) == 1 for row in matrix.row],
-        # only one chosen value per column
-        # [Sum(col) <= 20 for col in matrix.col]
     )
 
     return matrix, cost, model
